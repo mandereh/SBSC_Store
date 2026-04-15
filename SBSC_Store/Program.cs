@@ -70,8 +70,12 @@ namespace SBSC_Store
             .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddAuthentication();
+            builder.Services.ConfigureIdentity();
+            builder.Services.ConfigureJWT(builder.Configuration);
             builder.Services.AddSwaggerGen();
-
+            // builder.Services.ConfigureSwagger();
+            
             var app = builder.Build();
             
             var logger = app.Services.GetRequiredService<ILoggerManager>();
@@ -97,6 +101,7 @@ namespace SBSC_Store
                 ForwardedHeaders = ForwardedHeaders.All 
             }); 
             app.UseCors("CorsPolicy");
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
 

@@ -19,3 +19,4 @@ C:\Users\phron\Documents\.NET\SBSC_Store\Service\obj\Debug\net8.0\Service.pdb
 C:\Users\phron\Documents\.NET\SBSC_Store\Service\obj\Debug\net8.0\ref\Service.dll
 C:\Users\phron\Documents\.NET\SBSC_Store\Service\bin\Debug\net8.0\Shared.dll
 C:\Users\phron\Documents\.NET\SBSC_Store\Service\bin\Debug\net8.0\Shared.pdb
+C:\Users\phron\Documents\.NET\SBSC_Store\Service\obj\Debug\net8.0\Service.sourcelink.json

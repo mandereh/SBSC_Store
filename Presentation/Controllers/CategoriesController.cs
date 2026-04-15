@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ModelBinders;
@@ -14,6 +15,7 @@ public class CategoriesController : ControllerBase
     public CategoriesController(IServiceManager serviceManager) => _serviceManager = serviceManager;
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetCategories(bool trackChanges)

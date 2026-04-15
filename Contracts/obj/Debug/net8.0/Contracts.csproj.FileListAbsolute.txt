@@ -13,3 +13,4 @@ C:\Users\phron\Documents\.NET\SBSC_Store\Contracts\bin\Debug\net8.0\Entities.dll
 C:\Users\phron\Documents\.NET\SBSC_Store\Contracts\bin\Debug\net8.0\Entities.pdb
 C:\Users\phron\Documents\.NET\SBSC_Store\Contracts\obj\Debug\net8.0\Contracts.csproj.AssemblyReference.cache
 C:\Users\phron\Documents\.NET\SBSC_Store\Contracts\obj\Debug\net8.0\Contracts.csproj.Up2Date
+C:\Users\phron\Documents\.NET\SBSC_Store\Contracts\obj\Debug\net8.0\Contracts.sourcelink.json

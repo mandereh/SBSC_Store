@@ -151,3 +151,13 @@ C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.A
 C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\obj\Debug\net8.0\SBSC_Store.sourcelink.json
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
