@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Lu93RydC2ug=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\phron\\Documents\\.NET\\SBSC_Store\\Contracts\\Contracts.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\phron\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.25\\microsoft.netcore.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\phron\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.25\\microsoft.windowsdesktop.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\phron\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.25\\microsoft.aspnetcore.app.ref.8.0.25.nupkg.sha512"
+  ],
+  "logs": []
+}

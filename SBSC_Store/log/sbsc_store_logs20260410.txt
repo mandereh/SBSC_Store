@@ -1,0 +1,113 @@
+2026-04-10 19:39:07.019 +01:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2026-04-10 19:39:07.107 +01:00 [DBG] Hosting starting
+2026-04-10 19:39:07.165 +01:00 [WRN] The WebRootPath was not found: C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\wwwroot. Static files may be unavailable.
+2026-04-10 19:39:07.286 +01:00 [INF] Now listening on: https://localhost:7155
+2026-04-10 19:39:07.286 +01:00 [INF] Now listening on: http://localhost:5284
+2026-04-10 19:39:07.286 +01:00 [DBG] Loaded hosting startup assembly SBSC_Store
+2026-04-10 19:39:07.286 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-10 19:39:07.286 +01:00 [INF] Hosting environment: Development
+2026-04-10 19:39:07.286 +01:00 [INF] Content root path: C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store
+2026-04-10 19:39:07.286 +01:00 [DBG] Hosting started
+2026-04-10 19:39:16.359 +01:00 [DBG] Connection id "0HNKN61S2OCGJ" accepted.
+2026-04-10 19:39:16.359 +01:00 [DBG] Connection id "0HNKN61S2OCGJ" started.
+2026-04-10 19:39:16.416 +01:00 [DBG] Connection 0HNKN61S2OCGJ established using the following protocol: "Tls13"
+2026-04-10 19:39:16.479 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7155/swagger/index.html - null null
+2026-04-10 19:39:16.482 +01:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2026-04-10 19:39:16.500 +01:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2026-04-10 19:39:16.501 +01:00 [DBG] Request did not match any endpoints
+2026-04-10 19:39:16.626 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7155/swagger/index.html - 200 null text/html;charset=utf-8 148.063ms
+2026-04-10 19:39:17.231 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7155/swagger/v1/swagger.json - null null
+2026-04-10 19:39:17.231 +01:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2026-04-10 19:39:17.231 +01:00 [DBG] Request did not match any endpoints
+2026-04-10 19:39:17.339 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7155/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 108.5833ms
+2026-04-10 19:40:05.590 +01:00 [INF] Application is shutting down...
+2026-04-10 19:40:05.592 +01:00 [DBG] Hosting stopping
+2026-04-10 19:40:05.616 +01:00 [DBG] Connection id "0HNKN61S2OCGJ" is closing.
+2026-04-10 19:40:05.623 +01:00 [DBG] Connection id "0HNKN61S2OCGJ" is closed. The last processed stream ID was 3.
+2026-04-10 19:40:05.625 +01:00 [DBG] Connection id "0HNKN61S2OCGJ" received FIN.
+2026-04-10 19:40:05.632 +01:00 [DBG] Connection id "0HNKN61S2OCGJ" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-04-10 19:40:05.637 +01:00 [DBG] The connection queue processing loop for 0HNKN61S2OCGJ completed.
+2026-04-10 19:40:05.644 +01:00 [DBG] Connection id "0HNKN61S2OCGJ" stopped.
+2026-04-10 19:40:05.656 +01:00 [DBG] Hosting stopped
+2026-04-10 19:41:36.137 +01:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2026-04-10 19:41:36.206 +01:00 [DBG] Hosting starting
+2026-04-10 19:41:36.239 +01:00 [WRN] The WebRootPath was not found: C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\wwwroot. Static files may be unavailable.
+2026-04-10 19:41:36.327 +01:00 [INF] Now listening on: https://localhost:7155
+2026-04-10 19:41:36.327 +01:00 [INF] Now listening on: http://localhost:5284
+2026-04-10 19:41:36.327 +01:00 [DBG] Loaded hosting startup assembly SBSC_Store
+2026-04-10 19:41:36.327 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-10 19:41:36.327 +01:00 [INF] Hosting environment: Development
+2026-04-10 19:41:36.327 +01:00 [INF] Content root path: C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store
+2026-04-10 19:41:36.327 +01:00 [DBG] Hosting started
+2026-04-10 19:43:01.652 +01:00 [DBG] Connection id "0HNKN63V7AHI8" accepted.
+2026-04-10 19:43:01.653 +01:00 [DBG] Connection id "0HNKN63V7AHI8" started.
+2026-04-10 19:43:01.709 +01:00 [DBG] Connection 0HNKN63V7AHI8 established using the following protocol: "Tls13"
+2026-04-10 19:43:05.762 +01:00 [DBG] Connection id "0HNKN63V7AHI9" accepted.
+2026-04-10 19:43:05.762 +01:00 [DBG] Connection id "0HNKN63V7AHI9" started.
+2026-04-10 19:43:05.771 +01:00 [DBG] Connection 0HNKN63V7AHI9 established using the following protocol: "Tls13"
+2026-04-10 19:43:05.857 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7155/WeatherForecast - null null
+2026-04-10 19:43:05.863 +01:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2026-04-10 19:43:05.911 +01:00 [DBG] 1 candidate(s) found for the request path '/WeatherForecast'
+2026-04-10 19:43:05.917 +01:00 [DBG] Endpoint 'SBSC_Store.Controllers.WeatherForecastController.Get (SBSC_Store)' with route pattern 'WeatherForecast' is valid for the request path '/WeatherForecast'
+2026-04-10 19:43:05.919 +01:00 [DBG] Request matched endpoint 'SBSC_Store.Controllers.WeatherForecastController.Get (SBSC_Store)'
+2026-04-10 19:43:05.975 +01:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2026-04-10 19:43:05.977 +01:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2026-04-10 19:43:05.986 +01:00 [INF] Executing endpoint 'SBSC_Store.Controllers.WeatherForecastController.Get (SBSC_Store)'
+2026-04-10 19:43:06.033 +01:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[System.String] Get() on controller SBSC_Store.Controllers.WeatherForecastController (SBSC_Store).
+2026-04-10 19:43:06.040 +01:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2026-04-10 19:43:06.042 +01:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2026-04-10 19:43:06.046 +01:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2026-04-10 19:43:06.047 +01:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2026-04-10 19:43:06.047 +01:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2026-04-10 19:43:06.052 +01:00 [DBG] Executing controller factory for controller SBSC_Store.Controllers.WeatherForecastController (SBSC_Store)
+2026-04-10 19:43:06.053 +01:00 [DBG] Executed controller factory for controller SBSC_Store.Controllers.WeatherForecastController (SBSC_Store)
+2026-04-10 19:43:06.056 +01:00 [INF] Here is info message from our values controller.
+2026-04-10 19:43:06.060 +01:00 [DBG] Here is debug message from our values controller.
+2026-04-10 19:43:06.060 +01:00 [WRN] Here is warn message from our values controller.
+2026-04-10 19:43:06.060 +01:00 [ERR] Here is an error message from our values controller.
+2026-04-10 19:43:06.065 +01:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2026-04-10 19:43:06.070 +01:00 [DBG] Attempting to select an output formatter based on Accept header '["text/plain"]'.
+2026-04-10 19:43:06.071 +01:00 [DBG] Could not find an output formatter based on content negotiation. Accepted types were (["text/plain"])
+2026-04-10 19:43:06.072 +01:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2026-04-10 19:43:06.072 +01:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2026-04-10 19:43:06.073 +01:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2026-04-10 19:43:06.073 +01:00 [INF] Executing ObjectResult, writing value of type 'System.String[]'.
+2026-04-10 19:43:06.116 +01:00 [INF] Executed action SBSC_Store.Controllers.WeatherForecastController.Get (SBSC_Store) in 66.4542ms
+2026-04-10 19:43:06.120 +01:00 [INF] Executed endpoint 'SBSC_Store.Controllers.WeatherForecastController.Get (SBSC_Store)'
+2026-04-10 19:43:06.123 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7155/WeatherForecast - 200 null application/json; charset=utf-8 270.7319ms
+2026-04-10 19:43:31.657 +01:00 [INF] Application is shutting down...
+2026-04-10 19:43:31.658 +01:00 [DBG] Hosting stopping
+2026-04-10 19:43:31.668 +01:00 [DBG] Connection id "0HNKN63V7AHI8" is closing.
+2026-04-10 19:43:31.668 +01:00 [DBG] Connection id "0HNKN63V7AHI9" is closing.
+2026-04-10 19:43:31.670 +01:00 [DBG] Connection id "0HNKN63V7AHI9" is closed. The last processed stream ID was 1.
+2026-04-10 19:43:31.670 +01:00 [DBG] Connection id "0HNKN63V7AHI8" is closed. The last processed stream ID was 0.
+2026-04-10 19:43:31.671 +01:00 [DBG] Connection id "0HNKN63V7AHI8" received FIN.
+2026-04-10 19:43:31.671 +01:00 [DBG] Connection id "0HNKN63V7AHI9" received FIN.
+2026-04-10 19:43:31.672 +01:00 [DBG] Connection id "0HNKN63V7AHI9" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-04-10 19:43:31.672 +01:00 [DBG] Connection id "0HNKN63V7AHI8" sending FIN because: "The Socket transport's send loop completed gracefully."
+2026-04-10 19:43:31.676 +01:00 [DBG] The connection queue processing loop for 0HNKN63V7AHI8 completed.
+2026-04-10 19:43:31.676 +01:00 [DBG] The connection queue processing loop for 0HNKN63V7AHI9 completed.
+2026-04-10 19:43:31.680 +01:00 [DBG] Connection id "0HNKN63V7AHI8" stopped.
+2026-04-10 19:43:31.680 +01:00 [DBG] Connection id "0HNKN63V7AHI9" stopped.
+2026-04-10 19:43:31.684 +01:00 [DBG] Hosting stopped
+2026-04-10 19:44:39.577 +01:00 [WRN] The WebRootPath was not found: C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\wwwroot. Static files may be unavailable.
+2026-04-10 19:44:39.701 +01:00 [INF] Now listening on: https://localhost:7155
+2026-04-10 19:44:39.701 +01:00 [INF] Now listening on: http://localhost:5284
+2026-04-10 19:44:39.703 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-10 19:44:39.704 +01:00 [INF] Hosting environment: Development
+2026-04-10 19:44:39.704 +01:00 [INF] Content root path: C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store
+2026-04-10 19:44:48.522 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7155/WeatherForecast - null null
+2026-04-10 19:44:48.600 +01:00 [INF] Executing endpoint 'SBSC_Store.Controllers.WeatherForecastController.Get (SBSC_Store)'
+2026-04-10 19:44:48.615 +01:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[System.String] Get() on controller SBSC_Store.Controllers.WeatherForecastController (SBSC_Store).
+2026-04-10 19:44:48.616 +01:00 [INF] Here is info message from our values controller.
+2026-04-10 19:44:48.618 +01:00 [WRN] Here is warn message from our values controller.
+2026-04-10 19:44:48.618 +01:00 [ERR] Here is an error message from our values controller.
+2026-04-10 19:44:48.623 +01:00 [INF] Executing ObjectResult, writing value of type 'System.String[]'.
+2026-04-10 19:44:48.647 +01:00 [INF] Executed action SBSC_Store.Controllers.WeatherForecastController.Get (SBSC_Store) in 28.3631ms
+2026-04-10 19:44:48.650 +01:00 [INF] Executed endpoint 'SBSC_Store.Controllers.WeatherForecastController.Get (SBSC_Store)'
+2026-04-10 19:44:48.651 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7155/WeatherForecast - 200 null application/json; charset=utf-8 132.847ms
+2026-04-10 19:45:36.642 +01:00 [INF] Application is shutting down...
+2026-04-10 19:52:00.180 +01:00 [WRN] The WebRootPath was not found: C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\wwwroot. Static files may be unavailable.
+2026-04-10 19:52:16.340 +01:00 [INF] Here is info message from our values controller.
+2026-04-10 19:52:16.342 +01:00 [WRN] Here is warn message from our values controller.
+2026-04-10 19:52:16.343 +01:00 [ERR] Here is an error message from our values controller.

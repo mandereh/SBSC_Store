@@ -1,0 +1,11 @@
+<Solution>
+  <Project Path="Contracts\Contracts.csproj" Type="Classic C#" />
+  <Project Path="Entities\Entities.csproj" Type="Classic C#" />
+  <Project Path="LoggerService\LoggerService.csproj" Type="Classic C#" />
+  <Project Path="Presentation\Presentation.csproj" Type="Classic C#" />
+  <Project Path="Repository\Repository.csproj" Type="Classic C#" />
+  <Project Path="SBSC_Store/SBSC_Store.csproj" />
+  <Project Path="Service.Contracts\Service.Contracts.csproj" Type="Classic C#" />
+  <Project Path="Service\Service.csproj" Type="Classic C#" />
+  <Project Path="Shared\Shared.csproj" Type="Classic C#" />
+</Solution>
