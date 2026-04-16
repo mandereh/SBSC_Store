@@ -13,6 +13,12 @@ public class ProductsController : ControllerBase
     private readonly IServiceManager _serviceManager;
     public ProductsController(IServiceManager serviceManager) => _serviceManager = serviceManager;
 
+    
+    /// <summary>
+    /// Retrieves all products for the specified category.
+    /// </summary>
+    /// <param name="categoryId">The unique identifier of the category.</param>
+    /// <returns>A list of products for the specified category.</returns>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -22,6 +28,12 @@ public class ProductsController : ControllerBase
         return Ok(products);
     }
 
+    /// <summary>
+    /// Retrieves a single product by its identifier for the specified category.
+    /// </summary>
+    /// <param name="categoryId">The unique identifier of the category that contains the product.</param>
+    /// <param name="productId">The unique identifier of the product to retrieve.</param>
+    /// <returns>An <see cref="IActionResult"/> containing the requested product DTO when found.</returns>
     [HttpGet("{productId:guid}", Name = "GetProductForCategory")]
     public async Task<IActionResult> GetProductForCategory(Guid categoryId, Guid productId)
     {
@@ -29,6 +41,12 @@ public class ProductsController : ControllerBase
         return Ok(product);
     }
 
+    /// <summary>
+    /// Creates a new product in the specified category.
+    /// </summary>
+    /// <param name="categoryId">The unique identifier of the category to create the product in.</param>
+    /// <param name="productForCreationDto">DTO containing the product data to create.</param>
+    /// <returns>An <see cref="IActionResult"/> that returns 201 Created with the created product DTO.</returns>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -42,6 +60,12 @@ public class ProductsController : ControllerBase
         return CreatedAtRoute("GetProductForCategory", new {categoryId, productId = product.Id }, product);
     }
 
+    /// <summary>
+    /// Deletes the specified product from the given category.
+    /// </summary>
+    /// <param name="categoryId">The unique identifier of the category that contains the product.</param>
+    /// <param name="productId">The unique identifier of the product to delete.</param>
+    /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success or 404 NotFound if not found.</returns>
     [HttpDelete("{productId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -50,6 +74,14 @@ public class ProductsController : ControllerBase
         await _serviceManager.ProductService.DeleteProductForCategoryAsync(categoryId: categoryId, productId: productId, trackChanges: false);
         return NoContent();
     }
+    
+    /// <summary>
+    /// Partially updates a product for the specified category using a JSON Patch document.
+    /// </summary>
+    /// <param name="categoryId">The unique identifier of the category that contains the product.</param>
+    /// <param name="productId">The unique identifier of the product to update.</param>
+    /// <param name="productForUpdateDto">A JSON Patch document describing the partial updates.</param>
+    /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
     [HttpPut("{productId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -65,7 +97,17 @@ public class ProductsController : ControllerBase
         return NoContent();
     }
     
+    /// <summary>
+    /// Partially updates a product for the specified category using a JSON Patch document.
+    /// Applies the patch to a ProductForUpdateDto and persists changes if valid.
+    /// </summary>
+    /// <param name="categoryId">The unique identifier of the category that contains the product.</param>
+    /// <param name="productId">The unique identifier of the product to patch.</param>
+    /// <param name="productForUpdateDto">A <see cref="JsonPatchDocument{ProductForUpdateDto}"/> describing the partial updates.</param>
+    /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
     [HttpPatch("{productId:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> PartiallyUpdateProductForCategory(Guid categoryId, Guid productId,
         [FromBody] JsonPatchDocument<ProductForUpdateDto> productForUpdateDto)
     {

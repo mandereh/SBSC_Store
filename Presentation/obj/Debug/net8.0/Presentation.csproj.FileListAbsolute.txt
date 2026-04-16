@@ -18,3 +18,4 @@ C:\Users\phron\Documents\.NET\SBSC_Store\Presentation\bin\Debug\net8.0\Shared.pd
 C:\Users\phron\Documents\.NET\SBSC_Store\Presentation\bin\Debug\net8.0\Entities.dll
 C:\Users\phron\Documents\.NET\SBSC_Store\Presentation\bin\Debug\net8.0\Entities.pdb
 C:\Users\phron\Documents\.NET\SBSC_Store\Presentation\obj\Debug\net8.0\Presentation.sourcelink.json
+C:\Users\phron\Documents\.NET\SBSC_Store\Presentation\bin\Debug\net8.0\Presentation.xml

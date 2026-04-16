@@ -51,18 +51,18 @@ namespace SBSC_Store.Migrations
                         new
                         {
                             Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedAt = new DateTime(2026, 4, 15, 14, 5, 11, 422, DateTimeKind.Utc).AddTicks(4125),
+                            CreatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(1774),
                             Description = "Books Category",
                             Name = "Books",
-                            UpdatedAt = new DateTime(2026, 4, 15, 14, 5, 11, 422, DateTimeKind.Utc).AddTicks(4126)
+                            UpdatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(1775)
                         },
                         new
                         {
                             Id = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            CreatedAt = new DateTime(2026, 4, 15, 14, 5, 11, 422, DateTimeKind.Utc).AddTicks(4133),
+                            CreatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(1779),
                             Description = "Music Category",
                             Name = "Music",
-                            UpdatedAt = new DateTime(2026, 4, 15, 14, 5, 11, 422, DateTimeKind.Utc).AddTicks(4134)
+                            UpdatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(1780)
                         });
                 });
 
@@ -107,34 +107,34 @@ namespace SBSC_Store.Migrations
                         {
                             Id = new Guid("80abbca8-664d-4b20-b5de-024705497d4a"),
                             CategoryId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedAt = new DateTime(2026, 4, 15, 14, 5, 11, 422, DateTimeKind.Utc).AddTicks(4607),
+                            CreatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2085),
                             Description = "The Intellectual Life of the catholic scholar",
                             ImageUrl = "",
                             Name = "The Intellectual Life",
                             Price = 1000m,
-                            UpdatedAt = new DateTime(2026, 4, 15, 14, 5, 11, 422, DateTimeKind.Utc).AddTicks(4608)
+                            UpdatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2086)
                         },
                         new
                         {
                             Id = new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"),
                             CategoryId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            CreatedAt = new DateTime(2026, 4, 15, 14, 5, 11, 422, DateTimeKind.Utc).AddTicks(4618),
+                            CreatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2144),
                             Description = "Fair Game 1992",
                             ImageUrl = "",
                             Name = "Fair Game",
                             Price = 2000m,
-                            UpdatedAt = new DateTime(2026, 4, 15, 14, 5, 11, 422, DateTimeKind.Utc).AddTicks(4619)
+                            UpdatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2145)
                         },
                         new
                         {
                             Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"),
                             CategoryId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedAt = new DateTime(2026, 4, 15, 14, 5, 11, 422, DateTimeKind.Utc).AddTicks(4626),
+                            CreatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2150),
                             Description = "Les Sources by Pere Gratry",
                             ImageUrl = "",
                             Name = "Les Sources",
                             Price = 1000m,
-                            UpdatedAt = new DateTime(2026, 4, 15, 14, 5, 11, 422, DateTimeKind.Utc).AddTicks(4627)
+                            UpdatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2150)
                         });
                 });
 
@@ -158,11 +158,9 @@ namespace SBSC_Store.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
@@ -187,6 +185,12 @@ namespace SBSC_Store.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("RefreshTokenExpiryTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");

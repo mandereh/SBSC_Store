@@ -73,8 +73,8 @@ namespace SBSC_Store
             builder.Services.AddAuthentication();
             builder.Services.ConfigureIdentity();
             builder.Services.ConfigureJWT(builder.Configuration);
-            builder.Services.AddSwaggerGen();
-            // builder.Services.ConfigureSwagger();
+            // builder.Services.AddSwaggerGen();
+            builder.Services.ConfigureSwagger();
             
             var app = builder.Build();
             
@@ -87,7 +87,10 @@ namespace SBSC_Store
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(s =>
+                {
+                    s.SwaggerEndpoint("/swagger/v1/swagger.json", "SBSC STORE v1");
+                });
             }
             // if (app.Environment.IsDevelopment()) 
             //     app.UseDeveloperExceptionPage(); 
