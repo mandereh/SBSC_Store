@@ -16,3 +16,5 @@ C:\Users\phron\Documents\.NET\SBSC_Store\LoggerService\obj\Debug\net8.0\ref\Logg
 C:\Users\phron\Documents\.NET\SBSC_Store\LoggerService\bin\Debug\net8.0\Entities.dll
 C:\Users\phron\Documents\.NET\SBSC_Store\LoggerService\bin\Debug\net8.0\Entities.pdb
 C:\Users\phron\Documents\.NET\SBSC_Store\LoggerService\obj\Debug\net8.0\LoggerService.sourcelink.json
+C:\Users\phron\Documents\.NET\SBSC_Store\LoggerService\bin\Debug\net8.0\Shared.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\LoggerService\bin\Debug\net8.0\Shared.pdb

@@ -1,8 +1,11 @@
+using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 
 namespace Presentation.Controllers;
 
@@ -16,16 +19,22 @@ public class ProductsController : ControllerBase
     
     /// <summary>
     /// Retrieves all products for the specified category.
+    /// Use the <c>pageNumber</c> and <c>pageSize</c> query string parameters to control paging,
+    /// <c>minPrice</c> and <c>maxPrice</c> to filter by price range,
+    /// and <c>searchTerm</c> to search products by name or description.
     /// </summary>
     /// <param name="categoryId">The unique identifier of the category.</param>
-    /// <returns>A list of products for the specified category.</returns>
+    /// <param name="productParameters">The query parameters used for paging, price range filtering, and search.</param>
+    /// <returns>An <see cref="IActionResult"/> containing the paged list of products for the specified category.</returns>
+    [Authorize(Roles = "Admin, Customer")]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetProductsForCategory(Guid categoryId)
+    public async Task<IActionResult> GetProductsForCategory(Guid categoryId, [FromQuery] ProductParameters  productParameters)
     {
-        var products = await _serviceManager.ProductService.GetProductsAsync(categoryId, trackChanges: false);
-        return Ok(products);
+        var pagedResult = await _serviceManager.ProductService.GetProductsAsync(categoryId, productParameters, trackChanges: false);
+        Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+        return Ok(pagedResult.products);
     }
 
     /// <summary>
@@ -34,6 +43,7 @@ public class ProductsController : ControllerBase
     /// <param name="categoryId">The unique identifier of the category that contains the product.</param>
     /// <param name="productId">The unique identifier of the product to retrieve.</param>
     /// <returns>An <see cref="IActionResult"/> containing the requested product DTO when found.</returns>
+    [Authorize(Roles = "Admin, Customer")]
     [HttpGet("{productId:guid}", Name = "GetProductForCategory")]
     public async Task<IActionResult> GetProductForCategory(Guid categoryId, Guid productId)
     {
@@ -47,6 +57,7 @@ public class ProductsController : ControllerBase
     /// <param name="categoryId">The unique identifier of the category to create the product in.</param>
     /// <param name="productForCreationDto">DTO containing the product data to create.</param>
     /// <returns>An <see cref="IActionResult"/> that returns 201 Created with the created product DTO.</returns>
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -66,6 +77,7 @@ public class ProductsController : ControllerBase
     /// <param name="categoryId">The unique identifier of the category that contains the product.</param>
     /// <param name="productId">The unique identifier of the product to delete.</param>
     /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success or 404 NotFound if not found.</returns>
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{productId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -82,6 +94,7 @@ public class ProductsController : ControllerBase
     /// <param name="productId">The unique identifier of the product to update.</param>
     /// <param name="productForUpdateDto">A JSON Patch document describing the partial updates.</param>
     /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
+    [Authorize(Roles = "Admin")]
     [HttpPut("{productId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -105,6 +118,7 @@ public class ProductsController : ControllerBase
     /// <param name="productId">The unique identifier of the product to patch.</param>
     /// <param name="productForUpdateDto">A <see cref="JsonPatchDocument{ProductForUpdateDto}"/> describing the partial updates.</param>
     /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
+    [Authorize(Roles = "Admin")]
     [HttpPatch("{productId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

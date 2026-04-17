@@ -4,6 +4,7 @@ using Entities.Exceptions;
 using Entities.Models;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 
 namespace Service;
 
@@ -20,14 +21,17 @@ internal sealed class ProductService : IProductService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<ProductDto>> GetProductsAsync(Guid categoryId, bool trackChanges)
+    public async Task<(IEnumerable<ProductDto> products, MetaData metaData)> GetProductsAsync(Guid categoryId, ProductParameters productParameters,
+        bool trackChanges)
     {
+        if (!productParameters.ValidPriceRange)
+            throw new MaxPriceRangeBadRequestException();
         var category = await _repository.CategoryRepository.GetCategoryAsync(categoryId, trackChanges);
         if(category == null)
             throw new CategoryNotFoundException(categoryId);
-        var products = await _repository.ProductRepository.GetProductsAsync(category.Id, trackChanges);
-        var productDtos = _mapper.Map<IEnumerable<ProductDto>>(products);
-        return productDtos;
+        var productsWithMetaData = await _repository.ProductRepository.GetProductsAsync(categoryId, productParameters, trackChanges);
+        var productDtos = _mapper.Map<IEnumerable<ProductDto>>(productsWithMetaData);
+        return (products:  productDtos, metaData: productsWithMetaData.MetaData);
     }
 
     public async Task<ProductDto?> GetProductAsync(Guid categoryId, Guid productId, bool trackChanges)

@@ -1,10 +1,11 @@
 using Entities.Models;
+using Shared.RequestFeatures;
 
 namespace Contracts;
 
 public interface IProductRepository
 {
-    Task<IEnumerable<Product>> GetProductsAsync(Guid categoryId, bool trackChanges);
+    Task<PagedList<Product>> GetProductsAsync(Guid categoryId, ProductParameters productParameters, bool trackChanges);
     Task<Product?> GetProductAsync(Guid categoryId, Guid productId, bool trackChanges);
     void CreateProductForCategory(Guid categoryId, Product product);
     void DeleteProduct(Product product);

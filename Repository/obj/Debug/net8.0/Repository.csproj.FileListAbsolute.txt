@@ -16,3 +16,5 @@ C:\Users\phron\Documents\.NET\SBSC_Store\Repository\obj\Debug\net8.0\ref\Reposit
 C:\Users\phron\Documents\.NET\SBSC_Store\Repository\bin\Debug\net8.0\Contracts.dll
 C:\Users\phron\Documents\.NET\SBSC_Store\Repository\bin\Debug\net8.0\Contracts.pdb
 C:\Users\phron\Documents\.NET\SBSC_Store\Repository\obj\Debug\net8.0\Repository.sourcelink.json
+C:\Users\phron\Documents\.NET\SBSC_Store\Repository\bin\Debug\net8.0\Shared.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\Repository\bin\Debug\net8.0\Shared.pdb

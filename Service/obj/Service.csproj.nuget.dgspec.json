@@ -34,6 +34,9 @@
             "projectReferences": {
               "C:\\Users\\phron\\Documents\\.NET\\SBSC_Store\\Entities\\Entities.csproj": {
                 "projectPath": "C:\\Users\\phron\\Documents\\.NET\\SBSC_Store\\Entities\\Entities.csproj"
+              },
+              "C:\\Users\\phron\\Documents\\.NET\\SBSC_Store\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\phron\\Documents\\.NET\\SBSC_Store\\Shared\\Shared.csproj"
               }
             }
           }

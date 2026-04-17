@@ -1,11 +1,12 @@
 using Entities.Models;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 
 namespace Service.Contracts;
 
 public interface IProductService
 {
-    Task<IEnumerable<ProductDto>> GetProductsAsync(Guid categoryId, bool trackChanges);
+    Task<(IEnumerable<ProductDto> products,MetaData metaData)> GetProductsAsync(Guid categoryId, ProductParameters productParameters, bool trackChanges);
     Task<ProductDto?> GetProductAsync(Guid categoryId, Guid productId, bool trackChanges);
     
     Task<ProductDto> CreateProductForCategoryAsync(Guid categoryId, ProductForCreationDto productForCreationDto, bool trackChanges);
