@@ -17,12 +17,13 @@ public static class ServiceExtensions
 {
     public static void ConfigureCors(this IServiceCollection services) => services.AddCors(options =>
     {
-        options.AddPolicy("CorsPolicy", builder =>  builder.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .WithExposedHeaders("X-Pagination")
-        );
+        options.AddPolicy("AllowFrontend", policy =>
+            policy.WithOrigins("http://localhost:5173")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials());
     });
+
     
     public static void ConfigureIISIntegration(this IServiceCollection services) => 
         services.Configure<IISOptions>(options => 
@@ -39,7 +40,9 @@ public static class ServiceExtensions
         services.AddScoped<IServiceManager, ServiceManager>();
 
     public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
-        services.AddDbContext<RepositoryContext>(opts => opts.UseNpgsql(configuration.GetConnectionString("sqlConnection")));
+        services.AddDbContext<RepositoryContext>(opts =>
+            opts.UseNpgsql(configuration.GetConnectionString("sqlConnection"),
+                b => b.MigrationsAssembly("SBSC_Store")));
 
     public static void ConfigureIdentity(this IServiceCollection services)
     {
@@ -126,7 +129,8 @@ public static class ServiceExtensions
               
               var xmlFile = $"{typeof(Presentation.AssemblyReference).Assembly.GetName().Name}.xml"; 
               var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile); 
-              s.IncludeXmlComments(xmlPath); 
+              if (File.Exists(xmlPath))
+                s.IncludeXmlComments(xmlPath); 
               
               
               s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme 
@@ -154,5 +158,14 @@ public static class ServiceExtensions
               });
           });
         }
+    
+
+        public static void ApplyMigrations(this IApplicationBuilder app)
+        {
+            using var scope = app.ApplicationServices.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<RepositoryContext>();
+            dbContext.Database.Migrate();
+        }
+    
 
 }

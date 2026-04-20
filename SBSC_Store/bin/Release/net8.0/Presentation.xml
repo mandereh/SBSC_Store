@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Presentation</name>
+    </assembly>
+    <members>
+        <member name="M:Presentation.Controllers.AuthenticationController.RegisterUser(Shared.DataTransferObjects.UserForRegistrationDto)">
+            <summary>
+            Registers a new user using the provided registration DTO, including the user role.
+            </summary>
+            <param name="userForRegistrationDto">User details for registration (email, password, etc.), with role required as either \`Admin\` or \`Customer\`.</param>
+            <returns>201 Created on success; 400 Bad Request with model errors on failure.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.AuthenticationController.Authenticate(Shared.DataTransferObjects.UserForAuthenticationDto)">
+            <summary>
+            Authenticates a user and returns a JWT token when credentials are valid.
+            </summary>
+            <param name="userForAuthenticationDto">Credentials for authentication (username/email and password).</param>
+            <returns>200 OK with token DTO on success; 401 Unauthorized on failure.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.CategoriesController.GetCategories(System.Boolean)">
+            <summary> 
+            Gets the list of all Product Categories 
+            </summary> 
+            <returns>The product categories list</returns>
+        </member>
+        <member name="M:Presentation.Controllers.CategoriesController.GetCategory(System.Guid)">
+            <summary>
+            Get a single category by its Id
+            </summary>
+            <param name="id">Id</param>
+            <returns>A single category by Id</returns>
+        </member>
+        <member name="M:Presentation.Controllers.CategoriesController.CreateCategory(Shared.DataTransferObjects.CategoryForCreationDto)">
+            <summary> 
+            Creates a newly created category 
+            </summary> 
+            <param name="category"></param> 
+            <returns>A newly created category</returns> 
+            <response code="201">Returns the newly created item</response> 
+            <response code="400">If the item is null</response> 
+            <response code="422">If the model is invalid</response>
+        </member>
+        <member name="M:Presentation.Controllers.CategoriesController.GetCategoryCollection(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Gets a collection of categories by their Ids
+            </summary>
+            <param name="ids">Collection of category Ids</param>
+            <returns>A collection of categories matching the provided Ids</returns>
+        </member>
+        <member name="M:Presentation.Controllers.CategoriesController.CreateCategoryCollection(System.Collections.Generic.IEnumerable{Shared.DataTransferObjects.CategoryForCreationDto})">
+            <summary>
+            Creates a collection of categories.
+            </summary>
+            <param name="categoryForCreationDtos">The categories to create.</param>
+            <returns>A <see cref="T:Microsoft.AspNetCore.Mvc.CreatedAtRouteResult"/> containing the created categories.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.CategoriesController.DeleteCategory(System.Guid)">
+            <summary>
+            Deletes a category by its Id.
+            </summary>
+            <param name="id">The category Id.</param>
+            <returns>A \`204 No Content\` response when deletion succeeds.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.CategoriesController.UpdateCategory(System.Guid,Shared.DataTransferObjects.CategoryForUpdateDto)">
+            <summary>
+            Updates a category by its Id.
+            </summary>
+            <param name="categoryId">The category Id.</param>
+            <param name="categoryForUpdateDto">The category data to update.</param>
+            <returns>A `204 No Content` response when the update succeeds.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.ProductsController.GetProductsForCategory(System.Guid,Shared.RequestFeatures.ProductParameters)">
+            <summary>
+            Retrieves all products for the specified category.
+            Use the <c>pageNumber</c> and <c>pageSize</c> query string parameters to control paging,
+            <c>minPrice</c> and <c>maxPrice</c> to filter by price range,
+            and <c>searchTerm</c> to search products by name or description.
+            </summary>
+            <param name="categoryId">The unique identifier of the category.</param>
+            <param name="productParameters">The query parameters used for paging, price range filtering, and search.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the paged list of products for the specified category.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.ProductsController.GetProductForCategory(System.Guid,System.Guid)">
+            <summary>
+            Retrieves a single product by its identifier for the specified category.
+            </summary>
+            <param name="categoryId">The unique identifier of the category that contains the product.</param>
+            <param name="productId">The unique identifier of the product to retrieve.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the requested product DTO when found.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.ProductsController.CreateProductForCategory(System.Guid,Shared.DataTransferObjects.ProductForCreationDto)">
+            <summary>
+            Creates a new product in the specified category.
+            </summary>
+            <param name="categoryId">The unique identifier of the category to create the product in.</param>
+            <param name="productForCreationDto">DTO containing the product data to create.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> that returns 201 Created with the created product DTO.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.ProductsController.DeleteProductForCategory(System.Guid,System.Guid)">
+            <summary>
+            Deletes the specified product from the given category.
+            </summary>
+            <param name="categoryId">The unique identifier of the category that contains the product.</param>
+            <param name="productId">The unique identifier of the product to delete.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> that returns 204 NoContent on success or 404 NotFound if not found.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.ProductsController.UpdateProductForCategory(System.Guid,System.Guid,Shared.DataTransferObjects.ProductForUpdateDto)">
+            <summary>
+            Partially updates a product for the specified category using a JSON Patch document.
+            </summary>
+            <param name="categoryId">The unique identifier of the category that contains the product.</param>
+            <param name="productId">The unique identifier of the product to update.</param>
+            <param name="productForUpdateDto">A JSON Patch document describing the partial updates.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.ProductsController.PartiallyUpdateProductForCategory(System.Guid,System.Guid,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Shared.DataTransferObjects.ProductForUpdateDto})">
+            <summary>
+            Partially updates a product for the specified category using a JSON Patch document.
+            Applies the patch to a ProductForUpdateDto and persists changes if valid.
+            </summary>
+            <param name="categoryId">The unique identifier of the category that contains the product.</param>
+            <param name="productId">The unique identifier of the product to patch.</param>
+            <param name="productForUpdateDto">A <see cref="T:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument`1"/> describing the partial updates.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.TokenController.Refresh(Shared.DataTransferObjects.TokenDto)">
+            <summary>
+            Refreshes an authentication token using the provided refresh token.
+            </summary>
+            <param name="tokenDto">Contains the access and refresh tokens used to obtain a new token pair.</param>
+            <returns>ActionResult with the refreshed TokenDto on success or an error response.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.TokenController.Logout(Shared.DataTransferObjects.TokenDto)">
+            <summary>
+            Logs out the current session by revoking the stored refresh token.
+            </summary>
+            <param name="tokenDto">Contains the access and refresh tokens to identify the session.</param>
+            <returns>204 No Content when logout succeeds.</returns>
+        </member>
+    </members>
+</doc>

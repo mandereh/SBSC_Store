@@ -84,26 +84,25 @@ namespace SBSC_Store
                 app.UseHsts();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
             {
-                app.UseSwagger();
-                app.UseSwaggerUI(s =>
-                {
-                    s.SwaggerEndpoint("/swagger/v1/swagger.json", "SBSC STORE v1");
-                });
-            }
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "SBSC STORE v1");
+            });
+
             // if (app.Environment.IsDevelopment()) 
             //     app.UseDeveloperExceptionPage(); 
             // else 
             //     app.UseHsts(); 
-            app.UseHttpsRedirection();
-            if (Directory.Exists(Path.Combine(app.Environment.ContentRootPath, "wwwroot")))
-                app.UseStaticFiles();
             app.UseForwardedHeaders(new ForwardedHeadersOptions 
             { 
                 ForwardedHeaders = ForwardedHeaders.All 
             }); 
-            app.UseCors("CorsPolicy");
+            app.ApplyMigrations();
+            app.UseHttpsRedirection();
+            if (Directory.Exists(Path.Combine(app.Environment.ContentRootPath, "wwwroot")))
+                app.UseStaticFiles();
+            app.UseCors("AllowFrontend");
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();

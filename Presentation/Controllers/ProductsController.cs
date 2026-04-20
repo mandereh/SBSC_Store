@@ -120,6 +120,7 @@ public class ProductsController : ControllerBase
     /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
     [Authorize(Roles = "Admin")]
     [HttpPatch("{productId:guid}")]
+    [Consumes("application/json-patch+json")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> PartiallyUpdateProductForCategory(Guid categoryId, Guid productId,
@@ -135,4 +136,5 @@ public class ProductsController : ControllerBase
         await _serviceManager.ProductService.SaveChangesForPatchAsync(result.productForUpdateDto, result.product);
         return NoContent();
     }
+
 }

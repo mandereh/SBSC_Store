@@ -4,12 +4,27 @@
         <name>Presentation</name>
     </assembly>
     <members>
+        <member name="M:Presentation.Controllers.AuthenticationController.AdminRegisterUser(Shared.DataTransferObjects.UserForRegistrationAdminDto)">
+            <summary>
+            Allows an authenticated admin to create a new user and assign a role to that user via the admin registration endpoint (`POST api/authentication/admin/register`).
+            </summary>
+            <param name="userForRegistrationDto">
+            Registration payload provided by an authenticated admin. Roles included in the payload will be assigned to the created user.
+            </param>
+            <returns>
+            201 Created with <see cref="T:Shared.DataTransferObjects.RegistrationResponseDto"/> when successful; otherwise an error response.
+            </returns>
+            <response code="201">User created successfully and roles assigned.</response>
+            <response code="400">The request is invalid or registration failed validation.</response>
+            <response code="401">The caller is not authenticated.</response>
+            <response code="403">The caller is authenticated but not in the Admin role.</response>
+        </member>
         <member name="M:Presentation.Controllers.AuthenticationController.RegisterUser(Shared.DataTransferObjects.UserForRegistrationDto)">
             <summary>
-            Registers a new user using the provided registration DTO, including the user role.
+            Registers a new user, assigns the Customer role implicitly, and returns user details with JWT tokens.
             </summary>
-            <param name="userForRegistrationDto">User details for registration (email, password, etc.), with role required as either \`Admin\` or \`Customer\`.</param>
-            <returns>201 Created on success; 400 Bad Request with model errors on failure.</returns>
+            <param name="userForRegistrationDto">User details for registration (email, password, etc.). Role is assigned implicitly and is not accepted from the request payload.</param>
+            <returns>201 Created with user details and token on success; 400 Bad Request with model errors on failure.</returns>
         </member>
         <member name="M:Presentation.Controllers.AuthenticationController.Authenticate(Shared.DataTransferObjects.UserForAuthenticationDto)">
             <summary>
@@ -39,7 +54,7 @@
             <returns>A newly created category</returns> 
             <response code="201">Returns the newly created item</response> 
             <response code="400">If the item is null</response> 
-            <response code="422">If the model is invalid</response> 
+            <response code="422">If the model is invalid</response>
         </member>
         <member name="M:Presentation.Controllers.CategoriesController.GetCategoryCollection(System.Collections.Generic.IEnumerable{System.Guid})">
             <summary>

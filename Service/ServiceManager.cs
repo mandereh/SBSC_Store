@@ -31,6 +31,6 @@ public sealed class ServiceManager : IServiceManager
     public ICategoryService CategoryService => _categoryService.Value;
     public IProductService ProductService => _productService.Value;
     public IAuthenticationService AuthenticationService => _authenticationService.Value;
-        
-    
+
+
 }

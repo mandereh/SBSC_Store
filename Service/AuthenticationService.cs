@@ -16,6 +16,7 @@ namespace Service;
 
 internal sealed class AuthenticationService : IAuthenticationService
 {
+    private const string CustomerRole = "Customer";
     private readonly ILoggerManager _logger; 
     private readonly IMapper _mapper; 
     private readonly UserManager<User> _userManager; 
@@ -30,22 +31,87 @@ internal sealed class AuthenticationService : IAuthenticationService
         _mapper = mapper; 
         _userManager = userManager; 
         _configuration = configuration; 
-    } 
+    }
+
+
+    public async Task<(IdentityResult identityResult, RegistrationResponseDto? registrationResponseDto)>
+        AdminRegisterUser(UserForRegistrationAdminDto userForRegistrationAdminDto)
+    {
+        var user = _mapper.Map<User>(userForRegistrationAdminDto);
     
-    public async Task<IdentityResult> RegisterUser(UserForRegistrationDto userForRegistration) 
+        var email = userForRegistrationAdminDto.Email?.Trim();
+        user.Email = email;
+        user.UserName = email;
+    
+        var result = await _userManager.CreateAsync(user, userForRegistrationAdminDto.Password);
+        if (!result.Succeeded)
+            return (result, null);
+    
+        var role = string.IsNullOrWhiteSpace(userForRegistrationAdminDto.Role)
+            ? CustomerRole
+            : userForRegistrationAdminDto.Role.Trim();
+    
+        var allowedRoles = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "Admin", "Customer" };
+        if (!allowedRoles.Contains(role))
+        {
+            return (IdentityResult.Failed(new IdentityError
+            {
+                Code = "InvalidRole",
+                Description = $"Unsupported role: {role}"
+            }), null);
+        }
+    
+        var roleResult = await _userManager.AddToRoleAsync(user, role);
+        if (!roleResult.Succeeded)
+            return (roleResult, null);
+    
+        _user = user;
+        var tokenDto = await CreateToken(populateExp: true);
+    
+        var registeredUser = new RegisteredUserDto
+        {
+            Id = user.Id,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            Role = role
+        };
+    
+        return (IdentityResult.Success, new RegistrationResponseDto(registeredUser, tokenDto));
+    }
+    
+    public async Task<(IdentityResult Result, RegistrationResponseDto? registrationResponseDto)> RegisterUser(
+        UserForRegistrationDto userForRegistration) 
     { 
         var user = _mapper.Map<User>(userForRegistration);
         var email = userForRegistration.Email?.Trim();
         user.Email = email;
         user.UserName = email;
+        
 
         var result = await _userManager.CreateAsync(user, userForRegistration.Password); 
-        if (result.Succeeded) 
+        if (!result.Succeeded)
+            return (result, null);
+
+        // Public registration always assigns Customer implicitly.
+        var roleResult = await _userManager.AddToRoleAsync(user, CustomerRole);
+        if (!roleResult.Succeeded)
+            return (roleResult, null);
+
+        _user = user;
+        var tokenDto = await CreateToken(populateExp: true);
+
+        var registeredUser = new RegisteredUserDto
         {
-            if (userForRegistration.Roles is { Count: > 0 })
-                await _userManager.AddToRolesAsync(user, userForRegistration.Roles);
-        }
-        return result; 
+            Id = user.Id,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            Role = CustomerRole
+        };
+
+        var response = new RegistrationResponseDto(registeredUser, tokenDto);
+        return (IdentityResult.Success, response);
     } 
     public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuth) 
     { 
