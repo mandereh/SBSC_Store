@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Repository;
+using SBSC_Store.Configurations;
+using SBSC_Store.Swagger;
 using Service.Contracts;
 using Service;
 
@@ -39,6 +41,15 @@ public static class ServiceExtensions
     public static void ConfigureServiceManager(this IServiceCollection services) => 
         services.AddScoped<IServiceManager, ServiceManager>();
 
+    public static void ConfigureFileServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<CloudinarySettings>(configuration.GetSection("Cloudinary"));
+        services.Configure<StorageSettings>(configuration.GetSection("StorageSettings"));
+        services.AddSingleton<IFileServiceFactory, FileServiceFactory>();
+        services.AddSingleton<CloudinaryFileService>();
+        services.AddSingleton<LocalFileService>();
+    }
+    
     public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
         services.AddDbContext<RepositoryContext>(opts =>
             opts.UseNpgsql(configuration.GetConnectionString("sqlConnection"),
@@ -156,6 +167,8 @@ public static class ServiceExtensions
                       new List<string>() 
                   } 
               });
+              // enable multipart/form-data form fields (files and simple fields)
+              // s.OperationFilter<FileUploadOperationFilter>();
           });
         }
     

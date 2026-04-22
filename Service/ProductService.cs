@@ -1,7 +1,9 @@
 using AutoMapper;
 using Contracts;
+using Entities.Enums;
 using Entities.Exceptions;
 using Entities.Models;
+using Microsoft.AspNetCore.Http;
 using Service.Contracts;
 using Shared.DataTransferObjects;
 using Shared.RequestFeatures;
@@ -13,12 +15,14 @@ internal sealed class ProductService : IProductService
     private readonly IRepositoryManager _repository;
     private readonly ILoggerManager _logger;
     private readonly IMapper _mapper;
+    private readonly IFileServiceFactory _fileServiceFactory;
 
-    public ProductService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+    public ProductService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IFileServiceFactory fileServiceFactory)
     {
         _repository = repository;
         _logger = logger;
         _mapper = mapper;
+        _fileServiceFactory = fileServiceFactory;
     }
 
     public async Task<(IEnumerable<ProductDto> products, MetaData metaData)> GetProductsAsync(Guid categoryId, ProductParameters productParameters,
@@ -46,13 +50,43 @@ internal sealed class ProductService : IProductService
         return productDto;
     }
 
-    public async Task<ProductDto> CreateProductForCategoryAsync(Guid categoryId, ProductForCreationDto productForCreationDto,
+    public async Task<ProductDto> CreateProductForCategoryAsync(Guid categoryId, ProductForCreationDto productForCreationDto, IFormFile? image,
         bool trackChanges)
     {
+        _logger.LogInfo($"CreateProductForCategoryAsync called for category {categoryId}. Image present: {image != null}");
         var category = await _repository.CategoryRepository.GetCategoryAsync(categoryId, trackChanges);
         if (category == null)
             throw new CategoryNotFoundException(categoryId);
         var product = _mapper.Map<Product>(productForCreationDto);
+        
+        // Handle image upload if provided
+        if (image != null && image.Length > 0)
+        {
+            // Validate content type and size
+            var allowedTypes = new[] { "image/jpeg", "image/png", "image/gif" };
+            if (!allowedTypes.Contains(image.ContentType?.ToLowerInvariant()))
+                throw new ImageBadRequestException("Invalid image format. Allowed: jpeg, png, gif.");
+
+            if (image.Length > 5 * 1024 * 1024) // 5 MB limit (example)
+                throw new ImageBadRequestException("Image too large. Max 5 MB.");
+
+            var fileExt = Path.GetExtension(image.FileName);
+            var fileName = $"{Guid.NewGuid()}{fileExt}";
+
+            try
+            {
+                var fileService = _fileServiceFactory.Create(FileServiceType.Local);
+                var publicUrl = await fileService.UploadFile(image, fileName);
+                _logger.LogInfo($"Image uploaded to Local Storage. URL: {publicUrl}");
+                product.ImageUrl = publicUrl;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Image upload failed: {ex.Message}");
+                throw; // rethrow so caller gets failure
+            }
+        }
+        
         _repository.ProductRepository.CreateProductForCategory(categoryId, product);
         await _repository.SaveAsync();
         var productDto = _mapper.Map<ProductDto>(product);
@@ -81,7 +115,7 @@ internal sealed class ProductService : IProductService
         if (product == null)
             throw new ProductNotFoundException(productId);
         _mapper.Map(productForUpdateDto, product);
-        _repository.SaveAsync();
+        await _repository.SaveAsync();
     }
 
     public async Task<(ProductForUpdateDto productForUpdateDto, Product product)> GetProductForPatchAsync(Guid categoryId, Guid productId,

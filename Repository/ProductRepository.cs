@@ -33,4 +33,16 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
     }
 
     public void DeleteProduct(Product product) => Delete(product);
+    
+   
+   public void UpdateProductImage(Guid productId, string imageUrl)
+   {
+       var product = FindByCondition(p => p.Id.Equals(productId), trackChanges: true)
+           .SingleOrDefault();
+       if (product != null)
+       {
+           product.ImageUrl = imageUrl;
+           Update(product);  // This marks the entity as modified
+       }
+   }
 }

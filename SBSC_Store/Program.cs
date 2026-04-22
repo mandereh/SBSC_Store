@@ -43,6 +43,7 @@ namespace SBSC_Store
             builder.Services.ConfigureSqlContext(builder.Configuration);
             builder.Services.ConfigureRepositoryManager();
             builder.Services.ConfigureServiceManager();
+            builder.Services.ConfigureFileServices(builder.Configuration);
             NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter()
             {
                 var formatter = new ServiceCollection().AddLogging().AddMvc().AddNewtonsoftJson()

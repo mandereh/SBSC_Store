@@ -18,11 +18,12 @@ public sealed class ServiceManager : IServiceManager
         ILoggerManager logger, 
         IMapper mapper,
         UserManager<User> userManager,
-        IConfiguration configuration
+        IConfiguration configuration,
+        IFileServiceFactory fileServiceFactory
         )
     {
         _categoryService = new Lazy<ICategoryService>(() => new CategoryService(repositoryManager, logger, mapper));
-        _productService = new Lazy<IProductService>(() => new ProductService(repositoryManager, logger, mapper));
+        _productService = new Lazy<IProductService>(() => new ProductService(repositoryManager, logger, mapper, fileServiceFactory));
         _authenticationService =
             new Lazy<IAuthenticationService>(() =>
                 new AuthenticationService(logger, mapper, userManager, configuration));

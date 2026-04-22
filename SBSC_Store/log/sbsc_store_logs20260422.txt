@@ -1,0 +1,2 @@
+2026-04-22 15:33:32.491 +01:00 [INF] CreateProductForCategoryAsync called for category 3d490a70-94ce-4d15-9494-5248280c2ce3. Image present: True
+2026-04-22 15:33:32.899 +01:00 [INF] Image uploaded to Local Storage. URL: C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\uploads\d6e75203-a499-457c-8f50-e218fa393df2.png
