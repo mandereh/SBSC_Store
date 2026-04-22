@@ -56,18 +56,20 @@ public class ProductsController : ControllerBase
     /// </summary>
     /// <param name="categoryId">The unique identifier of the category to create the product in.</param>
     /// <param name="productForCreationDto">DTO containing the product data to create.</param>
+    /// <param name="image"></param>
     /// <returns>An <see cref="IActionResult"/> that returns 201 Created with the created product DTO.</returns>
     [Authorize(Roles = "Admin")]
     [HttpPost]
+    [Consumes("multipart/form-data")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateProductForCategory(Guid categoryId, [FromBody]ProductForCreationDto productForCreationDto)
+    public async Task<IActionResult> CreateProductForCategory(Guid categoryId, [FromForm]ProductForCreationDto productForCreationDto, IFormFile? image)
     {
         if (productForCreationDto == null)
             return BadRequest("productForCreationDto is null");
         if(!ModelState.IsValid)
             return UnprocessableEntity(ModelState);
-        var product = await _serviceManager.ProductService.CreateProductForCategoryAsync(categoryId, productForCreationDto, trackChanges: false);
+        var product = await _serviceManager.ProductService.CreateProductForCategoryAsync(categoryId, productForCreationDto,image, trackChanges: false);
         return CreatedAtRoute("GetProductForCategory", new {categoryId, productId = product.Id }, product);
     }
 

@@ -104,12 +104,13 @@
             <param name="productId">The unique identifier of the product to retrieve.</param>
             <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the requested product DTO when found.</returns>
         </member>
-        <member name="M:Presentation.Controllers.ProductsController.CreateProductForCategory(System.Guid,Shared.DataTransferObjects.ProductForCreationDto)">
+        <member name="M:Presentation.Controllers.ProductsController.CreateProductForCategory(System.Guid,Shared.DataTransferObjects.ProductForCreationDto,Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
             Creates a new product in the specified category.
             </summary>
             <param name="categoryId">The unique identifier of the category to create the product in.</param>
             <param name="productForCreationDto">DTO containing the product data to create.</param>
+            <param name="image"></param>
             <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> that returns 201 Created with the created product DTO.</returns>
         </member>
         <member name="M:Presentation.Controllers.ProductsController.DeleteProductForCategory(System.Guid,System.Guid)">

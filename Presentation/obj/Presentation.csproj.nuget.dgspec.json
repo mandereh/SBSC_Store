@@ -238,6 +238,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.3.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -317,6 +323,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.3.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

@@ -522,6 +522,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.28.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.25, )"
@@ -539,6 +543,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.11, )"
+            },
+            "Supabase.Storage": {
+              "target": "Package",
+              "version": "[2.4.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -638,6 +646,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.3.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -729,6 +743,10 @@
               "target": "Package",
               "version": "[16.1.1, )"
             },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.28.0, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.17.0, )"
@@ -813,6 +831,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.3.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

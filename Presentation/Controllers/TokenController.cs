@@ -18,7 +18,6 @@ public class TokenController:ControllerBase
     /// </summary>
     /// <param name="tokenDto">Contains the access and refresh tokens used to obtain a new token pair.</param>
     /// <returns>ActionResult with the refreshed TokenDto on success or an error response.</returns>
-    [Authorize]
     [HttpPost("refresh")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

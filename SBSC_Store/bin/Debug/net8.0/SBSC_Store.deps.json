@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "SBSC_Store/1.0.0": {
         "dependencies": {
+          "CloudinaryDotNet": "1.28.0",
           "Contracts": "1.0.0",
           "LoggerService": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.25",
@@ -18,6 +19,7 @@
           "Repository": "1.0.0",
           "Service": "1.0.0",
           "Service.Contracts": "1.0.0",
+          "Supabase.Storage": "2.4.1",
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "runtime": {
@@ -34,6 +36,25 @@
           "lib/net8.0/AutoMapper.dll": {
             "assemblyVersion": "16.0.0.0",
             "fileVersion": "16.1.1.0"
+          }
+        }
+      },
+      "BirdMessenger/3.1.4": {
+        "runtime": {
+          "lib/net8.0/BirdMessenger.dll": {
+            "assemblyVersion": "3.1.4.0",
+            "fileVersion": "3.1.4.0"
+          }
+        }
+      },
+      "CloudinaryDotNet/1.28.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/CloudinaryDotNet.dll": {
+            "assemblyVersion": "1.28.0.0",
+            "fileVersion": "1.28.0.0"
           }
         }
       },
@@ -615,6 +636,14 @@
           }
         }
       },
+      "MimeMapping/3.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/MimeMapping.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.1.0"
+          }
+        }
+      },
       "Mono.TextTemplating/2.2.1": {
         "dependencies": {
           "System.CodeDom": "4.4.0"
@@ -776,6 +805,28 @@
           "lib/net8.0/Serilog.Sinks.File.dll": {
             "assemblyVersion": "7.0.0.0",
             "fileVersion": "7.0.0.0"
+          }
+        }
+      },
+      "Supabase.Core/1.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/Supabase.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Supabase.Storage/2.4.1": {
+        "dependencies": {
+          "BirdMessenger": "3.1.4",
+          "MimeMapping": "3.0.1",
+          "Newtonsoft.Json": "13.0.3",
+          "Supabase.Core": "1.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Supabase.Storage.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
           }
         }
       },
@@ -970,6 +1021,7 @@
       "Service/1.0.0": {
         "dependencies": {
           "AutoMapper": "16.1.1",
+          "CloudinaryDotNet": "1.28.0",
           "Contracts": "1.0.0",
           "Service.Contracts": "1.0.0",
           "System.IdentityModel.Tokens.Jwt": "8.17.0"
@@ -1015,6 +1067,20 @@
       "sha512": "sha512-VNEky8JA15ci+oIDRGHITOGOpV4dILsf8pnn24QhDl2urtqgJ2IXiS/V2EtGU17P/+f6OeFQPJETaZXV9QOIZg==",
       "path": "automapper/16.1.1",
       "hashPath": "automapper.16.1.1.nupkg.sha512"
+    },
+    "BirdMessenger/3.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OkVRhxErBUC8n+nSdiHet8RAawrA3G2vaBAT1oiCm7BohbvgydfhPfatj4TEwPgE0ia/yI+6BMgQO9u8VcJE/g==",
+      "path": "birdmessenger/3.1.4",
+      "hashPath": "birdmessenger.3.1.4.nupkg.sha512"
+    },
+    "CloudinaryDotNet/1.28.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-o5Dfp5DrpF69s8qjlh4dxzXuJUCRxt7KQaweU8wMDxd1cPFONCVNZsgFQZ3v0PZDN76fLonZ5vFDjVTA3UTjCA==",
+      "path": "cloudinarydotnet/1.28.0",
+      "hashPath": "cloudinarydotnet.1.28.0.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -1289,6 +1355,13 @@
       "path": "microsoft.openapi/1.6.14",
       "hashPath": "microsoft.openapi.1.6.14.nupkg.sha512"
     },
+    "MimeMapping/3.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lhYcUVnWKaqrboAwi05YLCx3wdluM9Sr1Mv5Emhgc8c8yNVvdiSEnQJMdDvgb4grlYTaOmbnhYaezoeateX95w==",
+      "path": "mimemapping/3.0.1",
+      "hashPath": "mimemapping.3.0.1.nupkg.sha512"
+    },
     "Mono.TextTemplating/2.2.1": {
       "type": "package",
       "serviceable": true,
@@ -1386,6 +1459,20 @@
       "sha512": "sha512-fKL7mXv7qaiNBUC71ssvn/dU0k9t0o45+qm2XgKAlSt19xF+ijjxyA3R6HmCgfKEKwfcfkwWjayuQtRueZFkYw==",
       "path": "serilog.sinks.file/7.0.0",
       "hashPath": "serilog.sinks.file.7.0.0.nupkg.sha512"
+    },
+    "Supabase.Core/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fJK3Kfq1alw53AGWHBr+dhPu+BUR5dKuBjGhcxrFRVdsFFFWSD5iPIdTYi0CUQDA2b1OjGudYL1xd51yp4hU9Q==",
+      "path": "supabase.core/1.0.0",
+      "hashPath": "supabase.core.1.0.0.nupkg.sha512"
+    },
+    "Supabase.Storage/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nCb4tOVxBWB8LCM1ZW8RYU94bGKpTs87K/AvBboCPHq4pp3QBoyPziax0SWSaj3Df8M2cfbbsmQAu8qms8+uDg==",
+      "path": "supabase.storage/2.4.1",
+      "hashPath": "supabase.storage.2.4.1.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.6.2": {
       "type": "package",

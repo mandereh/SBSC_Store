@@ -162,3 +162,8 @@ C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.I
 C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Presentation.xml
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\BirdMessenger.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\MimeMapping.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Supabase.Core.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\Supabase.Storage.dll
+C:\Users\phron\Documents\.NET\SBSC_Store\SBSC_Store\bin\Debug\net8.0\CloudinaryDotNet.dll
