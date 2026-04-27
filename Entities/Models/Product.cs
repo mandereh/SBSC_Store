@@ -19,4 +19,7 @@ public class Product
     [ForeignKey(nameof(Category))]
     public Guid CategoryId { get; set; }
     public Category? Category { get; set; }
+    public ICollection<Review>? Reviews { get; set; }
+    // CartItems moved to Cart context, but you can keep this for direct querying if needed
+    public ICollection<CartItem>? CartItems { get; set; }
 }

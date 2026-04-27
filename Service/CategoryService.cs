@@ -46,7 +46,7 @@ internal sealed class CategoryService : ICategoryService
     public async Task<IEnumerable<CategoryDto>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges)
     {
         if (ids == null)
-            throw new IdParametersBadRequestException();
+            throw new IdParametersBadRequestException("ids cannot be null");
         var categories = await _repository.CategoryRepository.GetByIdsAsync(ids, trackChanges);
         if (ids.Count() != categories.Count())
             throw new CollectionByIdsBadRequestException();

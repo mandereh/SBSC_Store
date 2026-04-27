@@ -1,0 +1,29 @@
+2026-04-27 01:16:34.325 +01:00 [INF] Getting cart for user 0e80302a-107b-4e55-80e9-55d6d02c5748
+2026-04-27 01:16:34.516 +01:00 [INF] No active cart found for user 0e80302a-107b-4e55-80e9-55d6d02c5748, returning empty cart
+2026-04-27 01:18:06.225 +01:00 [INF] Adding product 86dba8c0-d178-41e7-938c-ed49778fb52a to cart for user 0e80302a-107b-4e55-80e9-55d6d02c5748. Quantity: 4
+2026-04-27 01:18:06.302 +01:00 [INF] Created new cart for user 0e80302a-107b-4e55-80e9-55d6d02c5748
+2026-04-27 01:18:06.321 +01:00 [INF] Added new product 86dba8c0-d178-41e7-938c-ed49778fb52a to cart with quantity 4
+2026-04-27 01:18:18.411 +01:00 [INF] Adding product 86dba8c0-d178-41e7-938c-ed49778fb52a to cart for user 0e80302a-107b-4e55-80e9-55d6d02c5748. Quantity: 4
+2026-04-27 01:18:18.447 +01:00 [INF] Updated quantity for product 86dba8c0-d178-41e7-938c-ed49778fb52a. New quantity: 8
+2026-04-27 01:18:24.253 +01:00 [INF] Adding product 86dba8c0-d178-41e7-938c-ed49778fb52a to cart for user 0e80302a-107b-4e55-80e9-55d6d02c5748. Quantity: 4
+2026-04-27 01:18:24.276 +01:00 [INF] Updated quantity for product 86dba8c0-d178-41e7-938c-ed49778fb52a. New quantity: 12
+2026-04-27 01:20:52.201 +01:00 [INF] Updating cart item. User: 0e80302a-107b-4e55-80e9-55d6d02c5748, Product: 86dba8c0-d178-41e7-938c-ed49778fb52a, New Quantity: 2
+2026-04-27 01:21:06.455 +01:00 [INF] Getting cart for user 0e80302a-107b-4e55-80e9-55d6d02c5748
+2026-04-27 01:21:50.957 +01:00 [INF] Updating cart item. User: 0e80302a-107b-4e55-80e9-55d6d02c5748, Product: de0cab34-f14d-41ad-8eaa-432015e70b9e, New Quantity: 6
+2026-04-27 01:21:50.989 +01:00 [ERR] Something went wrong: Entities.Exceptions.CartBadRequestException: Product de0cab34-f14d-41ad-8eaa-432015e70b9e not found in cart
+   at Service.CartItemService.UpdateCartItemAsync(String userId, UpdateCartItemDto updateCartItemDto) in C:\Users\phron\Documents\.NET\SBSC_Store\Service\CartItemService.cs:line 140
+   at Presentation.Controllers.CartsController.UpdateCartItemForCart(UpdateCartItemDto updateCartItemDto)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
