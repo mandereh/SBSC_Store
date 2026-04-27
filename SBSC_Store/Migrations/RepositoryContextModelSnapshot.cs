@@ -22,6 +22,72 @@ namespace SBSC_Store.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Entities.Models.Cart", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("CartId");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1);
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId", "Status")
+                        .IsUnique()
+                        .HasFilter("[Status] = 0");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("Entities.Models.CartItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("CartItemId");
+
+                    b.Property<Guid>("CartId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("CartId", "ProductId")
+                        .IsUnique();
+
+                    b.ToTable("CartsItems");
+                });
+
             modelBuilder.Entity("Entities.Models.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -51,18 +117,18 @@ namespace SBSC_Store.Migrations
                         new
                         {
                             Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(1774),
+                            CreatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1015),
                             Description = "Books Category",
                             Name = "Books",
-                            UpdatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(1775)
+                            UpdatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1016)
                         },
                         new
                         {
                             Id = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            CreatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(1779),
+                            CreatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1020),
                             Description = "Music Category",
                             Name = "Music",
-                            UpdatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(1780)
+                            UpdatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1020)
                         });
                 });
 
@@ -107,35 +173,70 @@ namespace SBSC_Store.Migrations
                         {
                             Id = new Guid("80abbca8-664d-4b20-b5de-024705497d4a"),
                             CategoryId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2085),
+                            CreatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1300),
                             Description = "The Intellectual Life of the catholic scholar",
                             ImageUrl = "",
                             Name = "The Intellectual Life",
                             Price = 1000m,
-                            UpdatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2086)
+                            UpdatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1301)
                         },
                         new
                         {
                             Id = new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"),
                             CategoryId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            CreatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2144),
+                            CreatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1306),
                             Description = "Fair Game 1992",
                             ImageUrl = "",
                             Name = "Fair Game",
                             Price = 2000m,
-                            UpdatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2145)
+                            UpdatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1307)
                         },
                         new
                         {
                             Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"),
                             CategoryId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2150),
+                            CreatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1311),
                             Description = "Les Sources by Pere Gratry",
                             ImageUrl = "",
                             Name = "Les Sources",
                             Price = 1000m,
-                            UpdatedAt = new DateTime(2026, 4, 16, 10, 58, 43, 524, DateTimeKind.Utc).AddTicks(2150)
+                            UpdatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1312)
                         });
+                });
+
+            modelBuilder.Entity("Entities.Models.Review", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("ReviewId");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>
@@ -242,13 +343,13 @@ namespace SBSC_Store.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a7fe41d0-dadb-48c9-89d7-9d8c74a6c6c7",
+                            Id = "57e4fd99-800e-4645-99cd-f6527c921956",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "1e4d4c2b-cc61-44ea-90ac-e6c86dd5d657",
+                            Id = "3729bb9e-0b7c-412d-83d3-40204fcfb457",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -360,6 +461,36 @@ namespace SBSC_Store.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Models.Cart", b =>
+                {
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany("Carts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.CartItem", b =>
+                {
+                    b.HasOne("Entities.Models.Cart", "Cart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.Product", "Product")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Entities.Models.Product", b =>
                 {
                     b.HasOne("Entities.Models.Category", "Category")
@@ -369,6 +500,24 @@ namespace SBSC_Store.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Entities.Models.Review", b =>
+                {
+                    b.HasOne("Entities.Models.Product", "Product")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -422,9 +571,26 @@ namespace SBSC_Store.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Entities.Models.Cart", b =>
+                {
+                    b.Navigation("CartItems");
+                });
+
             modelBuilder.Entity("Entities.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Entities.Models.Product", b =>
+                {
+                    b.Navigation("CartItems");
+
+                    b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("Entities.Models.User", b =>
+                {
+                    b.Navigation("Carts");
                 });
 #pragma warning restore 612, 618
         }

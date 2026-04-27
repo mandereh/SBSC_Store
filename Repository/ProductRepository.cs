@@ -25,6 +25,10 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
     public async Task<Product?> GetProductAsync(Guid categoryId, Guid productId, bool trackChanges) =>
     await FindByCondition(product => product.CategoryId.Equals(categoryId) && product.Id.Equals(productId), trackChanges)
         .SingleOrDefaultAsync();
+    
+    public async Task<Product?> GetProductByIdAsync(Guid productId, bool trackChanges) =>
+        await FindByCondition(product => product.Id.Equals(productId), trackChanges)
+            .SingleOrDefaultAsync();
 
     public void CreateProductForCategory(Guid categoryId, Product product)
     {

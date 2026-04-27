@@ -33,6 +33,68 @@
             <param name="userForAuthenticationDto">Credentials for authentication (username/email and password).</param>
             <returns>200 OK with token DTO on success; 401 Unauthorized on failure.</returns>
         </member>
+        <member name="M:Presentation.Controllers.CartsController.GetCartForUser">
+            <summary>
+            Gets the cart for the authenticated user.
+            </summary>
+            <returns>The cart if successful, Unauthorized if user ID not found in claims</returns>
+        </member>
+        <member name="M:Presentation.Controllers.CartsController.AddCartItemToCart(Shared.DataTransferObjects.AddToCartDto)">
+            <summary>
+            Adds a product to user's cart
+            </summary>
+            <param name="addToCartDto"></param>
+            <returns></returns>
+            <response code="201">Returns the updated cart</response>
+            <response code="400">If the request is invalid</response>
+            <response code="401">If the user is not authorized</response>
+        </member>
+        <member name="M:Presentation.Controllers.CartsController.UpdateCartItemForCart(Shared.DataTransferObjects.UpdateCartItemDto)">
+            <summary>
+            Updates a product in user's cart
+            </summary>
+            <param name="updateCartItemDto"></param>
+            <returns> Returns the updated cart</returns>
+            <response code="200">Returns the updated cart</response>
+            <response code="400">If the request is invalid</response>
+            <response code="401">If the user is not authorized</response>
+        </member>
+        <member name="M:Presentation.Controllers.CartsController.DeleteCartItemFromCart(System.Guid)">
+            <summary>
+            Deletes a product from user's cart
+            </summary>
+            <param name="productId"></param>
+            <returns></returns>
+            <response code="200">Returns the updated cart</response>
+            <response code="400">If the request is invalid</response>
+            <response code="401">If the user is not authorized</response>
+        </member>
+        <member name="M:Presentation.Controllers.CartsController.IncreaseCartItemQuantity(System.Guid)">
+            <summary>
+            Increases the quantity of a product in user's cart
+            </summary>
+            <param name="productId"></param>
+            <returns>Returns the updated cart</returns>
+        </member>
+        <member name="M:Presentation.Controllers.CartsController.DecreaseCartItemQuantity(System.Guid)">
+            <summary>
+            Decreases the quantity of a product in user's cart
+            </summary>
+            <param name="productId"></param>
+            <returns> Returns the updated cart</returns>
+        </member>
+        <member name="M:Presentation.Controllers.CartsController.ClearCartForUser">
+            <summary>
+            Clears the cart for the authenticated user.
+            </summary>
+            <returns> No content if successful, Unauthorized if user ID not found in claims</returns>
+        </member>
+        <member name="M:Presentation.Controllers.CartsController.DeleteCartForUser">
+            <summary>
+            Deletes the cart for the authenticated user.
+            </summary>
+            <returns> No content if successful, Unauthorized if user ID not found in claims</returns>
+        </member>
         <member name="M:Presentation.Controllers.CategoriesController.GetCategories(System.Boolean)">
             <summary> 
             Gets the list of all Product Categories 
@@ -139,6 +201,35 @@
             <param name="productId">The unique identifier of the product to patch.</param>
             <param name="productForUpdateDto">A <see cref="T:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument`1"/> describing the partial updates.</param>
             <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.ReviewsController.GetReviewsForProduct(System.Guid)">
+            <summary>
+            Retrieves all reviews for the specified product.
+            </summary>
+            <param name="productId">The unique identifier of the product.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the list of reviews for the specified product.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.ReviewsController.CreateReviewForProduct(System.Guid,Shared.DataTransferObjects.ReviewForCreationDto)">
+            <summary>
+            Creates a new review for the specified product.
+            </summary>
+            <param name="productId">The unique identifier of the product.</param>
+            <param name="reviewForCreationDto">The review to create.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the created review.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.ReviewsController.GetAverageRatingForProduct(System.Guid)">
+            <summary>
+            Retrieves the average rating for the specified product.
+            </summary>
+            <param name="productId">The unique identifier of the product.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> containing the average rating for the specified product.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.ReviewsController.DeleteReviewForProduct(System.Guid)">
+            <summary>
+            Deletes the specified review for the specified product.
+            </summary>
+            <param name="reviewId">The unique identifier of the review.</param>
+            <returns>An <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/> indicating whether the deletion was successful.</returns>
         </member>
         <member name="M:Presentation.Controllers.TokenController.Refresh(Shared.DataTransferObjects.TokenDto)">
             <summary>

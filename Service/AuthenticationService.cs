@@ -157,6 +157,7 @@ internal sealed class AuthenticationService : IAuthenticationService
     { 
         var claims = new List<Claim> 
         { 
+            new Claim(ClaimTypes.NameIdentifier, _user.Id.ToString()),
             new Claim(ClaimTypes.Email, _user.Email),
             // Keep Name aligned with email so Identity.Name is available during refresh.
             new Claim(ClaimTypes.Name, _user.UserName ?? _user.Email)
