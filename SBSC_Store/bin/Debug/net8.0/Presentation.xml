@@ -245,5 +245,37 @@
             <param name="tokenDto">Contains the access and refresh tokens to identify the session.</param>
             <returns>204 No Content when logout succeeds.</returns>
         </member>
+        <member name="M:Presentation.Controllers.OrdersController.PlaceOrder">
+            <summary>
+            Places a new order for the authenticated user.
+            </summary>
+            <returns>An IActionResult indicating the result of the order placement.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.OrdersController.GetUserOrders">
+            <summary>
+            Gets the orders for the authenticated user.
+            </summary>
+            <returns>An IActionResult containing the list of orders for the user.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.OrdersController.GetOrderByNumber(System.String)">
+            <summary>
+            Gets a specific order by order number for the authenticated user.
+            </summary>
+            <param name="orderNumber">The order number of the order to retrieve.</param>
+            <returns>An IActionResult containing the order details or a 404 Not Found status if the order is not found.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.PaymentsController.VerifyPayment(Shared.DataTransferObjects.VerifyPaymentRequestDto)">
+            <summary>
+            Verifies a payment and completes the order.
+            </summary>
+            <param name="verifyPaymentRequestDto">The request containing the payment reference.</param>
+            <returns>An IActionResult indicating the result of the payment verification and order completion.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.PaymentsController.Webhook">
+            <summary>
+            Handles the Paystack webhook.
+            </summary>
+            <returns>An IActionResult indicating the result of the webhook processing.</returns>
+        </member>
     </members>
 </doc>

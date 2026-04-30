@@ -24,7 +24,7 @@ namespace SBSC_Store.Migrations
 
             modelBuilder.Entity("Entities.Models.Cart", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("cartId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("CartId");
@@ -35,9 +35,7 @@ namespace SBSC_Store.Migrations
                         .HasDefaultValueSql("NOW()");
 
                     b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(1);
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
@@ -48,7 +46,7 @@ namespace SBSC_Store.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("cartId");
 
                     b.HasIndex("UserId", "Status")
                         .IsUnique()
@@ -117,19 +115,105 @@ namespace SBSC_Store.Migrations
                         new
                         {
                             Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1015),
+                            CreatedAt = new DateTime(2026, 4, 28, 18, 20, 30, 345, DateTimeKind.Utc).AddTicks(1172),
                             Description = "Books Category",
                             Name = "Books",
-                            UpdatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1016)
+                            UpdatedAt = new DateTime(2026, 4, 28, 18, 20, 30, 345, DateTimeKind.Utc).AddTicks(1173)
                         },
                         new
                         {
                             Id = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            CreatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1020),
+                            CreatedAt = new DateTime(2026, 4, 28, 18, 20, 30, 345, DateTimeKind.Utc).AddTicks(1176),
                             Description = "Music Category",
                             Name = "Music",
-                            UpdatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1020)
+                            UpdatedAt = new DateTime(2026, 4, 28, 18, 20, 30, 345, DateTimeKind.Utc).AddTicks(1176)
                         });
+                });
+
+            modelBuilder.Entity("Entities.Models.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("OrderId");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("OrderNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("PaymentProvider")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("PaymentReference")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderNumber")
+                        .IsUnique();
+
+                    b.HasIndex("PaymentReference")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Entities.Models.OrderItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("OrderItemId");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ProductName")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<decimal>("ProductPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Entities.Models.Product", b =>
@@ -173,34 +257,34 @@ namespace SBSC_Store.Migrations
                         {
                             Id = new Guid("80abbca8-664d-4b20-b5de-024705497d4a"),
                             CategoryId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1300),
+                            CreatedAt = new DateTime(2026, 4, 28, 18, 20, 30, 345, DateTimeKind.Utc).AddTicks(1363),
                             Description = "The Intellectual Life of the catholic scholar",
                             ImageUrl = "",
                             Name = "The Intellectual Life",
                             Price = 1000m,
-                            UpdatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1301)
+                            UpdatedAt = new DateTime(2026, 4, 28, 18, 20, 30, 345, DateTimeKind.Utc).AddTicks(1363)
                         },
                         new
                         {
                             Id = new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"),
                             CategoryId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            CreatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1306),
+                            CreatedAt = new DateTime(2026, 4, 28, 18, 20, 30, 345, DateTimeKind.Utc).AddTicks(1368),
                             Description = "Fair Game 1992",
                             ImageUrl = "",
                             Name = "Fair Game",
                             Price = 2000m,
-                            UpdatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1307)
+                            UpdatedAt = new DateTime(2026, 4, 28, 18, 20, 30, 345, DateTimeKind.Utc).AddTicks(1368)
                         },
                         new
                         {
                             Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"),
                             CategoryId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1311),
+                            CreatedAt = new DateTime(2026, 4, 28, 18, 20, 30, 345, DateTimeKind.Utc).AddTicks(1371),
                             Description = "Les Sources by Pere Gratry",
                             ImageUrl = "",
                             Name = "Les Sources",
                             Price = 1000m,
-                            UpdatedAt = new DateTime(2026, 4, 24, 15, 26, 26, 505, DateTimeKind.Utc).AddTicks(1312)
+                            UpdatedAt = new DateTime(2026, 4, 28, 18, 20, 30, 345, DateTimeKind.Utc).AddTicks(1372)
                         });
                 });
 
@@ -343,13 +427,13 @@ namespace SBSC_Store.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "57e4fd99-800e-4645-99cd-f6527c921956",
+                            Id = "3346200f-bd7b-41c7-85b4-b73110023af0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "3729bb9e-0b7c-412d-83d3-40204fcfb457",
+                            Id = "39cb13f8-675f-4480-9824-b0baeea50bef",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -491,6 +575,28 @@ namespace SBSC_Store.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Entities.Models.Order", b =>
+                {
+                    b.HasOne("Entities.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.OrderItem", b =>
+                {
+                    b.HasOne("Entities.Models.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("Entities.Models.Product", b =>
                 {
                     b.HasOne("Entities.Models.Category", "Category")
@@ -579,6 +685,11 @@ namespace SBSC_Store.Migrations
             modelBuilder.Entity("Entities.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Entities.Models.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Entities.Models.Product", b =>

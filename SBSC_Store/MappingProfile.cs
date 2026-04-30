@@ -27,5 +27,7 @@ public class MappingProfile : Profile
         CreateMap<Review, ReviewDto>()
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User!.FirstName + " " + src.User!.LastName));
         CreateMap<ReviewForCreationDto, Review>();
+        CreateMap<Order, OrderDto>();
+        CreateMap<OrderItem, OrderItemDto>();
     } 
 }

@@ -11,10 +11,9 @@ public class CartConfiguration : IEntityTypeConfiguration<Cart>
     {
         builder.HasKey(c => c.cartId);
         builder.Property(c => c.cartId).ValueGeneratedOnAdd();
-        
+
         builder.Property(c => c.Status)
-            .IsRequired()
-            .HasDefaultValue(CartStatus.Active);
+            .IsRequired();
         
         builder.Property(c => c.CreatedAt)
             .HasDefaultValueSql("NOW()");
