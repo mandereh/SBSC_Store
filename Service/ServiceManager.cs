@@ -15,6 +15,8 @@ public sealed class ServiceManager : IServiceManager
     private readonly Lazy<ICartService> _cartService;
     private readonly Lazy<ICartItemService> _cartItemService;
     private readonly Lazy<IReviewService> _reviewService;
+    private readonly Lazy<IOrderService> _orderService;
+    
 
     public ServiceManager(
         IRepositoryManager repositoryManager, 
@@ -22,7 +24,8 @@ public sealed class ServiceManager : IServiceManager
         IMapper mapper,
         UserManager<User> userManager,
         IConfiguration configuration,
-        IFileServiceFactory fileServiceFactory
+        IFileServiceFactory fileServiceFactory,
+        IPaymentServiceFactory paymentServiceFactory
         )
     {
         _categoryService = new Lazy<ICategoryService>(() => new CategoryService(repositoryManager, logger, mapper));
@@ -34,6 +37,7 @@ public sealed class ServiceManager : IServiceManager
         _cartItemService = new Lazy<ICartItemService>(() => 
             new CartItemService(repositoryManager, logger, mapper));
         _reviewService = new Lazy<IReviewService>(() => new ReviewService(repositoryManager, logger, mapper));
+        _orderService = new Lazy<IOrderService>(() => new OrderService(repositoryManager, logger, mapper, paymentServiceFactory, userManager));
     }
 
     public ICategoryService CategoryService => _categoryService.Value;
@@ -42,6 +46,7 @@ public sealed class ServiceManager : IServiceManager
     public IReviewService ReviewService => _reviewService.Value;
     public ICartService CartService => _cartService.Value;
     public ICartItemService CartItemService => _cartItemService.Value;
+    public IOrderService OrderService => _orderService.Value;
 
 
 }

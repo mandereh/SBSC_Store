@@ -7,5 +7,6 @@ public interface IRepositoryManager
     IReviewRepository ReviewRepository { get; }
     ICartRepository CartRepository { get; }
     ICartItemRepository CartItemRepository { get; }
+    IOrderRepository OrderRepository { get; }
     Task SaveAsync();
 }

@@ -20,7 +20,7 @@ public static class ServiceExtensions
     public static void ConfigureCors(this IServiceCollection services) => services.AddCors(options =>
     {
         options.AddPolicy("AllowFrontend", policy =>
-            policy.WithOrigins("http://localhost:5173")
+            policy.WithOrigins("http://localhost:5173", "https://sbscstore.fly.dev")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials());
@@ -50,6 +50,14 @@ public static class ServiceExtensions
         services.AddSingleton<LocalFileService>();
     }
     
+    public static void ConfigurePaymentServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<PaystackSettings>(configuration.GetSection("Paystack"));
+        services.AddHttpClient();
+        services.AddSingleton<IPaymentServiceFactory, PaymentServiceFactory>();
+        services.AddSingleton<PaystackPaymentService>();
+    }
+        
     public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
         services.AddDbContext<RepositoryContext>(opts =>
             opts.UseNpgsql(configuration.GetConnectionString("sqlConnection"),

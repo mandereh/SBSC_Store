@@ -10,6 +10,7 @@ public class RepositoryManager : IRepositoryManager
     private readonly Lazy<IReviewRepository> _reviewRepository;
     private readonly Lazy<ICartRepository> _cartRepository;
     private readonly Lazy<ICartItemRepository> _cartItemRepository;
+    private readonly Lazy<IOrderRepository> _orderRepository;
  
     public RepositoryManager(RepositoryContext repositoryContext) 
     { 
@@ -19,6 +20,7 @@ public class RepositoryManager : IRepositoryManager
         _reviewRepository = new Lazy<IReviewRepository>(() => new ReviewRepository(repositoryContext));
         _cartRepository = new Lazy<ICartRepository>(() => new CartRepository(repositoryContext));
         _cartItemRepository = new Lazy<ICartItemRepository>(() => new CartItemRepository(repositoryContext));
+        _orderRepository = new Lazy<IOrderRepository>(() => new OrderRepository(repositoryContext));
     } 
  
     public ICategoryRepository CategoryRepository => _categoryRepository.Value; 
@@ -26,5 +28,6 @@ public class RepositoryManager : IRepositoryManager
     public IReviewRepository ReviewRepository => _reviewRepository.Value;
     public ICartRepository CartRepository => _cartRepository.Value;
     public ICartItemRepository CartItemRepository => _cartItemRepository.Value;
+    public IOrderRepository OrderRepository => _orderRepository.Value;
     public async Task SaveAsync() => await _repositoryContext.SaveChangesAsync(); 
 }
