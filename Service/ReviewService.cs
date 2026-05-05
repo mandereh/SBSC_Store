@@ -93,6 +93,21 @@ internal sealed class ReviewService : IReviewService
         var product = await _repository.ProductRepository.GetProductByIdAsync(productId, trackChanges: false);
         if (product == null)
             throw new ProductNotFoundException(productId);
+        
+        var hasPurchased = await _repository.OrderRepository.UserHasPurchasedProductAsync(userId, productId);
+        if (!hasPurchased)
+        {
+            _logger.LogWarn($"User {userId} has not purchased product {productId}");
+            throw new ProductNotPurchasedBadRequest($"User {userId} has not purchased product {productId}");
+        }
+        
+        // Check if user has already reviewed this product
+        var existingReview = await _repository.ReviewRepository.GetReviewByUserIdAsync(productId, userId, trackChanges: false);
+        if (existingReview != null)
+        {
+            _logger.LogWarn($"User {userId} has already reviewed product {productId}");
+            throw new ReviewAlreadyExistsBadRequest($"User {userId} has already reviewed product {productId}");
+        }
 
         // Map DTO to entity
         var review = _mapper.Map<Review>(reviewForCreationDto);

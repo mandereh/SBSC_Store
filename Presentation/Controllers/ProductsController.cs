@@ -52,14 +52,14 @@ public class ProductsController : ControllerBase
     }
 
     /// <summary>
-    /// Creates a new product in the specified category.
+    /// Admin Creates a new product in the specified category.
     /// </summary>
     /// <param name="categoryId">The unique identifier of the category to create the product in.</param>
     /// <param name="productForCreationDto">DTO containing the product data to create.</param>
     /// <param name="image"></param>
     /// <returns>An <see cref="IActionResult"/> that returns 201 Created with the created product DTO.</returns>
     [Authorize(Roles = "Admin")]
-    [HttpPost]
+    [HttpPost("/api/admin/products")]
     [Consumes("multipart/form-data")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -74,13 +74,13 @@ public class ProductsController : ControllerBase
     }
 
     /// <summary>
-    /// Deletes the specified product from the given category.
+    /// Admin Deletes the specified product from the given category.
     /// </summary>
     /// <param name="categoryId">The unique identifier of the category that contains the product.</param>
     /// <param name="productId">The unique identifier of the product to delete.</param>
     /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success or 404 NotFound if not found.</returns>
     [Authorize(Roles = "Admin")]
-    [HttpDelete("{productId:guid}")]
+    [HttpDelete("/api/admin/products/{productId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteProductForCategory(Guid categoryId, Guid productId)
@@ -90,14 +90,14 @@ public class ProductsController : ControllerBase
     }
     
     /// <summary>
-    /// Partially updates a product for the specified category using a JSON Patch document.
+    /// Admin Updates a product for the specified category using a JSON Patch document.
     /// </summary>
     /// <param name="categoryId">The unique identifier of the category that contains the product.</param>
     /// <param name="productId">The unique identifier of the product to update.</param>
     /// <param name="productForUpdateDto">A JSON Patch document describing the partial updates.</param>
     /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
     [Authorize(Roles = "Admin")]
-    [HttpPut("{productId:guid}")]
+    [HttpPut("/api/admin/products/{productId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -113,7 +113,7 @@ public class ProductsController : ControllerBase
     }
     
     /// <summary>
-    /// Partially updates a product for the specified category using a JSON Patch document.
+    /// Admin Partially updates a product for the specified category using a JSON Patch document.
     /// Applies the patch to a ProductForUpdateDto and persists changes if valid.
     /// </summary>
     /// <param name="categoryId">The unique identifier of the category that contains the product.</param>
@@ -121,7 +121,7 @@ public class ProductsController : ControllerBase
     /// <param name="productForUpdateDto">A <see cref="JsonPatchDocument{ProductForUpdateDto}"/> describing the partial updates.</param>
     /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
     [Authorize(Roles = "Admin")]
-    [HttpPatch("{productId:guid}")]
+    [HttpPatch("/api/admin/products/{productId:guid}")]
     [Consumes("application/json-patch+json")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

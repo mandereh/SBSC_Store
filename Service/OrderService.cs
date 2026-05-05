@@ -6,6 +6,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 
 namespace Service;
 
@@ -150,6 +151,34 @@ internal sealed class OrderService : IOrderService
             throw new OrderNotFoundException(orderNumber);
         return _mapper.Map<OrderDto>(order);
     }
+    
+    public async Task<(IEnumerable<OrderDto> orders, MetaData metaData)> GetOrdersAsync(OrderParameters orderParameters)
+    {
+        var pagedOrders = await _repository.OrderRepository.GetOrdersAsync(orderParameters, trackChanges: false);
+        var orderDtos = _mapper.Map<IEnumerable<OrderDto>>(pagedOrders);
+        return (orders: orderDtos, metaData: pagedOrders.MetaData);
+    }
+    
+    public async Task<OrderDto> MarkOrderAsShippedAsync(string orderNumber)
+    {
+        var order = await _repository.OrderRepository.GetOrderByNumberAsync(orderNumber, trackChanges: true);
+        if (order == null)
+            throw new OrderNotFoundException(orderNumber);
+
+        if (order.Status != OrderStatus.Processing)
+            throw new OrderStatusBadRequestException($"Order must be in Processing status to be shipped. Current status: {order.Status}");
+
+        order.Status = OrderStatus.Shipped;
+        order.UpdatedAt = DateTime.UtcNow;
+        _repository.OrderRepository.UpdateOrder(order);
+        await _repository.SaveAsync();
+
+        _logger.LogInfo($"Order {orderNumber} marked as shipped");
+
+        var updatedOrder = await _repository.OrderRepository.GetOrderByNumberAsync(orderNumber, trackChanges: false);
+        return _mapper.Map<OrderDto>(updatedOrder!);
+    }
+
 
     private string GenerateOrderNumber()
     {
