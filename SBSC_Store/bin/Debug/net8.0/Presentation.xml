@@ -147,6 +147,60 @@
             <param name="categoryForUpdateDto">The category data to update.</param>
             <returns>A `204 No Content` response when the update succeeds.</returns>
         </member>
+        <member name="M:Presentation.Controllers.OrdersController.PlaceOrder">
+            <summary>
+            Places a new order for the authenticated user.
+            </summary>
+            <returns>An IActionResult indicating the result of the order placement.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.OrdersController.GetUserOrders">
+            <summary>
+            Gets the orders for the authenticated user.
+            </summary>
+            <returns>An IActionResult containing the list of orders for the user.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.OrdersController.GetAllOrdersForAdmin(Shared.RequestFeatures.OrderParameters)">
+            <summary>
+            Gets all orders for the admin dashboard.
+            </summary>
+            <param name="orderParameters">The order parameters for filtering and sorting the orders.</param>
+            <returns>An IActionResult containing the paged result of orders or an error status.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.OrdersController.MarkOrderAsShipped(System.String)">
+            <summary>
+            Marks an order as shipped by its order number for the admin dashboard.
+            </summary>
+            <param name="orderNumber">The order number of the order to mark as shipped.</param>
+            <returns>An IActionResult indicating the result of the order marking as shipped.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.OrdersController.GetOrderByNumber(System.String)">
+            <summary>
+            Gets a specific order by order number for the authenticated user.
+            </summary>
+            <param name="orderNumber">The order number of the order to retrieve.</param>
+            <returns>An IActionResult containing the order details or a 404 Not Found status if the order is not found.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.PaymentsController.VerifyPayment(Shared.DataTransferObjects.VerifyPaymentRequestDto)">
+            <summary>
+            Verifies a payment and completes the order.
+            </summary>
+            <param name="verifyPaymentRequestDto">The request containing the payment reference.</param>
+            <returns>An IActionResult indicating the result of the payment verification and order completion.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.PaymentsController.VerifyPaymentCallback(System.String,System.String)">
+            <summary>
+            Handles the Paystack payment callback (browser redirect after payment).
+            </summary>
+            <param name="trxref">Transaction reference from Paystack.</param>
+            <param name="reference">Payment reference from Paystack.</param>
+            <returns>Redirects to a success or failure page, or returns verification result.</returns>
+        </member>
+        <member name="M:Presentation.Controllers.PaymentsController.Webhook">
+            <summary>
+            Handles the Paystack webhook.
+            </summary>
+            <returns>An IActionResult indicating the result of the webhook processing.</returns>
+        </member>
         <member name="M:Presentation.Controllers.ProductsController.GetProductsForCategory(System.Guid,Shared.RequestFeatures.ProductParameters)">
             <summary>
             Retrieves all products for the specified category.
@@ -168,7 +222,7 @@
         </member>
         <member name="M:Presentation.Controllers.ProductsController.CreateProductForCategory(System.Guid,Shared.DataTransferObjects.ProductForCreationDto,Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
-            Creates a new product in the specified category.
+            Admin Creates a new product in the specified category.
             </summary>
             <param name="categoryId">The unique identifier of the category to create the product in.</param>
             <param name="productForCreationDto">DTO containing the product data to create.</param>
@@ -177,7 +231,7 @@
         </member>
         <member name="M:Presentation.Controllers.ProductsController.DeleteProductForCategory(System.Guid,System.Guid)">
             <summary>
-            Deletes the specified product from the given category.
+            Admin Deletes the specified product from the given category.
             </summary>
             <param name="categoryId">The unique identifier of the category that contains the product.</param>
             <param name="productId">The unique identifier of the product to delete.</param>
@@ -185,7 +239,7 @@
         </member>
         <member name="M:Presentation.Controllers.ProductsController.UpdateProductForCategory(System.Guid,System.Guid,Shared.DataTransferObjects.ProductForUpdateDto)">
             <summary>
-            Partially updates a product for the specified category using a JSON Patch document.
+            Admin Updates a product for the specified category using a JSON Patch document.
             </summary>
             <param name="categoryId">The unique identifier of the category that contains the product.</param>
             <param name="productId">The unique identifier of the product to update.</param>
@@ -194,7 +248,7 @@
         </member>
         <member name="M:Presentation.Controllers.ProductsController.PartiallyUpdateProductForCategory(System.Guid,System.Guid,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Shared.DataTransferObjects.ProductForUpdateDto})">
             <summary>
-            Partially updates a product for the specified category using a JSON Patch document.
+            Admin Partially updates a product for the specified category using a JSON Patch document.
             Applies the patch to a ProductForUpdateDto and persists changes if valid.
             </summary>
             <param name="categoryId">The unique identifier of the category that contains the product.</param>
@@ -244,38 +298,6 @@
             </summary>
             <param name="tokenDto">Contains the access and refresh tokens to identify the session.</param>
             <returns>204 No Content when logout succeeds.</returns>
-        </member>
-        <member name="M:Presentation.Controllers.OrdersController.PlaceOrder">
-            <summary>
-            Places a new order for the authenticated user.
-            </summary>
-            <returns>An IActionResult indicating the result of the order placement.</returns>
-        </member>
-        <member name="M:Presentation.Controllers.OrdersController.GetUserOrders">
-            <summary>
-            Gets the orders for the authenticated user.
-            </summary>
-            <returns>An IActionResult containing the list of orders for the user.</returns>
-        </member>
-        <member name="M:Presentation.Controllers.OrdersController.GetOrderByNumber(System.String)">
-            <summary>
-            Gets a specific order by order number for the authenticated user.
-            </summary>
-            <param name="orderNumber">The order number of the order to retrieve.</param>
-            <returns>An IActionResult containing the order details or a 404 Not Found status if the order is not found.</returns>
-        </member>
-        <member name="M:Presentation.Controllers.PaymentsController.VerifyPayment(Shared.DataTransferObjects.VerifyPaymentRequestDto)">
-            <summary>
-            Verifies a payment and completes the order.
-            </summary>
-            <param name="verifyPaymentRequestDto">The request containing the payment reference.</param>
-            <returns>An IActionResult indicating the result of the payment verification and order completion.</returns>
-        </member>
-        <member name="M:Presentation.Controllers.PaymentsController.Webhook">
-            <summary>
-            Handles the Paystack webhook.
-            </summary>
-            <returns>An IActionResult indicating the result of the webhook processing.</returns>
         </member>
     </members>
 </doc>

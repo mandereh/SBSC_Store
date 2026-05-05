@@ -1,4 +1,5 @@
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 
 namespace Service.Contracts;
 
@@ -37,4 +38,7 @@ public interface IOrderService
     /// <param name="signature"> The request signature. </param>
     /// <returns> The Order DTO. </returns>
     Task<OrderDto> ProcessWebhookAsync(string rawBody, string? signature);
+    
+    Task<(IEnumerable<OrderDto> orders, MetaData metaData)> GetOrdersAsync(OrderParameters orderParameters);
+    Task<OrderDto> MarkOrderAsShippedAsync(string orderNumber);
 }

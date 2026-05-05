@@ -84,5 +84,23 @@ public class ReviewRepository : RepositoryBase<Review>, IReviewRepository
         
         return (decimal)Math.Round(averageRating, 2); // Round to 2 decimal places
     }
-
+    
+    /// <summary>
+    /// Gets all reviews by a specific user
+    /// 
+    /// WHY THIS METHOD:
+    /// - Needed for displaying a user's reviews on their profile page (EC-008 requirement)
+    /// - Includes Product data for showing product name
+    /// - Orders by date desc for logical flow
+    /// - Uses ToListAsync() to execute query and return list of reviews
+    /// </summary>
+    /// <param name="userId"> User ID</param>
+    /// <param name="productId"> Product ID</param>
+    /// <param name="trackChanges"> Track changes</param>
+    /// <returns> List of reviews by user</returns>
+    public async Task<Review?> GetReviewByUserIdAsync(Guid productId, string userId, bool trackChanges) =>
+        await FindByCondition(review => 
+            review.ProductId.Equals(productId) && 
+            review.UserId.Equals(userId), trackChanges)
+            .SingleOrDefaultAsync();
 }

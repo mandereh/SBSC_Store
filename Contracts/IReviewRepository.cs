@@ -9,4 +9,5 @@ public interface IReviewRepository
     void CreateReview(Guid productId, Review review);
     void DeleteReview(Review review);
     Task<decimal> GetAverageRatingAsync(Guid productId);
+    Task<Review?> GetReviewByUserIdAsync(Guid productId, string userId, bool trackChanges);
 }
