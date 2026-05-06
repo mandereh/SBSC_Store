@@ -18,7 +18,12 @@ public class CloudinaryFileService : IFileService
     {
         _logger = logger;
         _cloudinaryConfig = config.Value;
-        var account = $"cloudinary://{_cloudinaryConfig.ApiKey}:{_cloudinaryConfig.ApiSecret}@{_cloudinaryConfig.CloudName}";
+        // var account = $"cloudinary://{_cloudinaryConfig.ApiKey}:{_cloudinaryConfig.ApiSecret}@{_cloudinaryConfig.CloudName}";
+        var account = new Account(
+            _cloudinaryConfig.CloudName,
+            _cloudinaryConfig.ApiKey,
+            _cloudinaryConfig.ApiSecret
+        );
         _cloudClient = new Cloudinary(account);
     }
     
@@ -26,7 +31,8 @@ public class CloudinaryFileService : IFileService
     {
         try
         {
-            var deletionParams = new DeletionParams(fileName);
+            var publicId = Path.GetFileNameWithoutExtension(fileName);
+            var deletionParams = new DeletionParams(publicId);
             var result = await _cloudClient.DestroyAsync(deletionParams);
             return result.Result == "ok";
         }

@@ -88,27 +88,27 @@ public class ProductsController : ControllerBase
         await _serviceManager.ProductService.DeleteProductForCategoryAsync(categoryId: categoryId, productId: productId, trackChanges: false);
         return NoContent();
     }
-    
+
     /// <summary>
     /// Admin Updates a product for the specified category using a JSON Patch document.
     /// </summary>
     /// <param name="categoryId">The unique identifier of the category that contains the product.</param>
     /// <param name="productId">The unique identifier of the product to update.</param>
     /// <param name="productForUpdateDto">A JSON Patch document describing the partial updates.</param>
+    /// <param name="image"></param>
     /// <returns>An <see cref="IActionResult"/> that returns 204 NoContent on success, 400 BadRequest for invalid input, or 422 UnprocessableEntity for model validation errors.</returns>
     [Authorize(Roles = "Admin")]
     [HttpPut("/api/admin/products/{productId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> UpdateProductForCategory(Guid categoryId, Guid productId,
-        [FromBody]ProductForUpdateDto productForUpdateDto)
+    public async Task<IActionResult> UpdateProductForCategory(Guid categoryId, Guid productId, [FromForm]ProductForUpdateDto productForUpdateDto, IFormFile? image)
     {
         if (productForUpdateDto == null)
             return BadRequest("productForUpdateDto object is null");
         if (!ModelState.IsValid)
             return UnprocessableEntity(ModelState);
-        await _serviceManager.ProductService.UpdateProductForCategoryAsync(categoryId,productId, productForUpdateDto,false,true);
+        await _serviceManager.ProductService.UpdateProductForCategoryAsync(categoryId,productId, productForUpdateDto,false,true, image);
         return NoContent();
     }
     
