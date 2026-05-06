@@ -75,7 +75,7 @@ internal sealed class ProductService : IProductService
 
             try
             {
-                var fileService = _fileServiceFactory.Create(FileServiceType.Local);
+                var fileService = _fileServiceFactory.Create(FileServiceType.Cloudinary);
                 var publicUrl = await fileService.UploadFile(image, fileName);
                 _logger.LogInfo($"Image uploaded to Local Storage. URL: {publicUrl}");
                 product.ImageUrl = publicUrl;
@@ -106,7 +106,7 @@ internal sealed class ProductService : IProductService
     }
 
     public async Task UpdateProductForCategoryAsync(Guid categoryId, Guid productId, ProductForUpdateDto productForUpdateDto,
-        bool catTrackChanges, bool proTrackChanges)
+        bool catTrackChanges, bool proTrackChanges, IFormFile? image)
     {
         var category = await _repository.CategoryRepository.GetCategoryAsync(categoryId, catTrackChanges);
         if (category == null)
@@ -115,6 +115,53 @@ internal sealed class ProductService : IProductService
         if (product == null)
             throw new ProductNotFoundException(productId);
         _mapper.Map(productForUpdateDto, product);
+
+            // Handle image replacement if provided
+        if (image != null && image.Length > 0)
+        {
+            var allowedTypes = new[] { "image/jpeg", "image/png", "image/gif" };
+            if (!allowedTypes.Contains(image.ContentType?.ToLowerInvariant()))
+                throw new ImageBadRequestException("Invalid image format. Allowed: jpeg, png, gif.");
+
+            if (image.Length > 5 * 1024 * 1024)
+                throw new ImageBadRequestException("Image too large. Max 5 MB.");
+
+            var fileExt = Path.GetExtension(image.FileName);
+            var fileName = $"{Guid.NewGuid()}{fileExt}";
+
+            try
+            {
+                var fileService = _fileServiceFactory.Create(FileServiceType.Cloudinary);
+
+                // Delete old image if one exists (best-effort: don't fail update if deletion fails)
+                if (!string.IsNullOrWhiteSpace(product.ImageUrl))
+                {
+                    try
+                    {
+                        await fileService.DeleteFile(product.ImageUrl);
+                        _logger.LogInfo($"Deleted old image for product {productId}");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarn($"Failed to delete old image for product {productId}: {ex.Message}");
+                    }
+                }
+
+                var publicUrl = await fileService.UploadFile(image, fileName);
+                _logger.LogInfo($"Image uploaded for product {productId}. URL: {publicUrl}");
+                product.ImageUrl = publicUrl;
+            }
+            catch (ImageBadRequestException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Image upload failed for product {productId}: {ex.Message}");
+                throw;
+            }
+        }
+        
         await _repository.SaveAsync();
     }
 

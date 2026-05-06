@@ -14,7 +14,7 @@ public interface IProductService
     Task DeleteProductForCategoryAsync(Guid categoryId, Guid productId, bool trackChanges);
 
     Task UpdateProductForCategoryAsync(Guid categoryId, Guid productId, ProductForUpdateDto productForUpdateDto,
-        bool catTrackChanges, bool proTrackChanges);
+        bool catTrackChanges, bool proTrackChanges, IFormFile? image);
     Task<(ProductForUpdateDto productForUpdateDto, Product product)> GetProductForPatchAsync(Guid categoryId, Guid productId, bool catTrackChanges,  bool proTrackChanges);
     Task SaveChangesForPatchAsync(ProductForUpdateDto productForUpdateDto, Product product);
 }
